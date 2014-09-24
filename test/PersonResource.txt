@@ -40,5 +40,5 @@ PersonExists
 
 CheckExpectation
     [Arguments]    ${exp}
-    Run Keyword If    '${exp}' == 'Successful'    Page Should Contain    created
+    Run Keyword If    '${exp}' == 'SUCCESS'    Page Should Contain    created
     Run Keyword If    '${exp}' == 'Failed'        Page Should Contain    exists

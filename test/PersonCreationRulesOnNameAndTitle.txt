@@ -28,3 +28,4 @@ ApplyRulesOnCreatingPerson
     [Arguments]    ${name}    ${title}    ${output}
     CreatePerson    ${name}    ${title}
     VerifyOutput    ${output}
+    DeletePeople

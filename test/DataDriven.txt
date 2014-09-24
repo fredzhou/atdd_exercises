@@ -8,15 +8,15 @@ Resource          PersonResource.txt
 *** Test Cases ***
 Successfully Create A Person
 #   Name        Title    Result
-    Lv Yi       Coach    Successful
+    Lv Yi       Coach    SUCCESS
 
 Successfully Create Multiple Person
 #   Name         Title        Result
-    Lv Yi        Coach        Successful
-    Zhou Feng    Developer    Successful
-    Zhang Eric   Developer    Successful
+    Lv Yi        Coach        SUCCESS
+    Zhou Feng    Developer    SUCCESS
+    Zhang Eric   Developer    SUCCESS
 
 Not Create Same Person
 #   Name        Title      Result
-    Lv Yi       Coach      Successful
-    Lv Yi       Developer  Failed
+    Lv Yi       Coach      SUCCESS
+    Lv Yi       Developer  FAILURE

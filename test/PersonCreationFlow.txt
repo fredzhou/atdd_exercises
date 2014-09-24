@@ -4,19 +4,23 @@ Test Teardown     Run Keywords    DeletePeople    AND    Close Browser
 Resource          PersonResource.txt
 
 *** Test Cases ***
-SuccessfullyCreateAPerson
+Successfully create a person
     CreatePerson    Lv Yi    Coach
     VerifyOutput    Lv Yi, Coach has been created!
     VerifyPerson    Lv Yi    Coach
 
-SuccessfullyCreateMultiplePersons
+Successfully create multiple persons
     CreatePerson    Lv Yi    Coach
+    VerifyOutput    Lv Yi, Coach has been created!
     CreatePerson    Zhang Liaoyuan    Developer
     VerifyOutput    Zhang Liaoyuan, Developer has been created!
+    CreatePerson    Zhou Feng    Developer
+    VerifyOutput    Zhou Feng, Developer has been created!
     VerifyPerson    Zhang Liaoyuan    Developer
     VerifyPerson    Lv Yi    Coach
+    VerifyPerson    Zhou Feng    Developer
 
-NotCreateSamePerson
+Not create same person
     CreatePerson    Lv Yi    Coach
     CreatePerson    Lv Yi    Developer
     VerifyOutput    Lv Yi already exists!
