@@ -20,3 +20,11 @@ Not Create Same Person
 #   NAME        TITLE      RESULT
     Lv Yi       Coach      SUCCESS
     Lv Yi       Developer  FAILURE
+
+*** Keywords ***
+CreatePersonTemplate
+    [Arguments]    ${name}    ${title}    ${result}
+    CreatePerson    ${name}    ${title}
+    CheckExpectation    ${result}
+    PersonExists    ${name}
+    

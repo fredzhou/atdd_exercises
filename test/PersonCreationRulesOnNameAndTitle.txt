@@ -25,6 +25,7 @@ InvalidTitle
 
 *** Keywords ***
 ApplyRulesOnCreatingPerson
-    [Arguments]    ${name}    ${title}    ${output}
-    CreatePerson    ${name}    ${title}
-    VerifyOutput    ${output}
+    [Arguments]         ${name}    ${title}    ${exp}
+    CreatePerson        ${name}    ${title}
+    CheckExpectation    ${exp}
+    DeletePeople

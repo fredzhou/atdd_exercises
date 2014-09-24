@@ -26,19 +26,14 @@ DeletePeople
     Go To    ${SERVER}/people
     Submit Form    destroy
 
+CheckExpectation
+    [Arguments]    ${exp}
+    Run Keyword If    '${exp}' == 'SUCCESS'    Page Should Contain    created
+    Run Keyword If    '${exp}' == 'FAILURE'        Page Should not Contain    created
 
-CreatePersonTemplate
-    [Arguments]    ${name}    ${title}    ${result}
-    CreatePerson    ${name}    ${title}
-    CheckExpectation    ${result}
-    PersonExists    ${name}
-    
+
 PersonExists
     [Arguments]    ${name}
     Go To    ${SERVER}/people
     Page Should Contain    ${name}
 
-CheckExpectation
-    [Arguments]    ${exp}
-    Run Keyword If    '${exp}' == 'Successful'    Page Should Contain    created
-    Run Keyword If    '${exp}' == 'Failed'        Page Should Contain    exists
