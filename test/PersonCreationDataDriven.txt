@@ -1,0 +1,22 @@
+*** Settings ***
+Test Setup        Run Keywords    Open Browser    ${SERVER}    AND    DeletePeople
+Test Teardown     Run Keywords    DeletePeople    AND    Close Browser
+
+Test Template     CreatePersonTemplate
+Resource          PersonResource.txt
+
+*** Test Cases ***
+Successfully Create A Person
+#   NAME        TITLE    RESULT
+    Lv Yi       Coach    SUCCESS
+
+Successfully Create Multiple Person
+#   NAME         TITLE        RESULT
+    Lv Yi        Coach        SUCCESS
+    Zhang Eric   Developer    SUCCESS
+    Zhou Feng    Developer    SUCCESS    
+
+Not Create Same Person
+#   NAME        TITLE      RESULT
+    Lv Yi       Coach      SUCCESS
+    Lv Yi       Developer  FAILURE
