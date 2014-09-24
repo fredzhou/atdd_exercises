@@ -5,27 +5,12 @@ Test Template     ApplyRulesOnCreatingPerson
 Resource          PersonResource.txt
 
 *** Test Cases ***
-ValidNameAndTitle
-    Lv Yi    Coach    Lv Yi, Coach has been created!
-
-InvalidNameNotBeginWithLetter
-    20 Lv Yi    Coach    Invalid name!
-
-InvalidNameTooLong
-    Lv Yi 888888888888888    Coach    Invalid name!
-
-ValidNameAndNoTitle
-    Lv Yi    \    Lv Yi, \ has been created!
-
-ValidTitle
-    Lv Yi    Developer    Lv Yi, Developer has been created!
-
-InvalidTitle
-    Lv Yi    Engineer    Invalid title!
-
-*** Keywords ***
-ApplyRulesOnCreatingPerson
-    [Arguments]    ${name}    ${title}    ${output}
-    CreatePerson    ${name}    ${title}
-    VerifyOutput    ${output}
-    DeletePeople
+Check rules on Name and Title
+#   NAME                     TITLE        RESULT
+    Lv Yi                    Coach        SUCCESS
+    20 Lv Yi                 Coach        FAILURE
+    Lv Yi 88888888888888     Coach        SUCCESS
+    Lv Yi 888888888888888    Coach        FAILURE
+    Lv Yi                    ${EMPTY}     SUCCESS
+    Lv Yi                    Developer    SUCCESS
+    Lv Yi                    Engineer     FAILURE

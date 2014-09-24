@@ -12,12 +12,12 @@ Successfully create a person
 Successfully create multiple persons
     CreatePerson    Lv Yi    Coach
     VerifyOutput    Lv Yi, Coach has been created!
+    VerifyPerson    Lv Yi    Coach
     CreatePerson    Zhang Liaoyuan    Developer
     VerifyOutput    Zhang Liaoyuan, Developer has been created!
+    VerifyPerson    Zhang Liaoyuan    Developer    
     CreatePerson    Zhou Feng    Developer
     VerifyOutput    Zhou Feng, Developer has been created!
-    VerifyPerson    Zhang Liaoyuan    Developer
-    VerifyPerson    Lv Yi    Coach
     VerifyPerson    Zhou Feng    Developer
 
 Not create same person
