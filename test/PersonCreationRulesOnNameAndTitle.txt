@@ -1,4 +1,11 @@
 *** Settings ***
+Documentation
+...    Table format of rules on name and title
+...    rules need to check:
+...        legal letters for name
+...        name length
+...        title should be in pre-defined set
+
 Test Setup        Run Keywords    Open Browser    ${SERVER}    AND    DeletePeople
 Test Teardown     Run Keywords    DeletePeople    AND    Close Browser
 Test Template     ApplyRulesOnCreatingPerson

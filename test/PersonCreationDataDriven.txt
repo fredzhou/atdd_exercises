@@ -1,4 +1,8 @@
 *** Settings ***
+Documentation
+...                  Data Driven format of Person Creation. 
+...                  Same name with existing one is not permited
+
 Test Setup        Run Keywords    Open Browser    ${SERVER}    AND    DeletePeople
 Test Teardown     Run Keywords    DeletePeople    AND    Close Browser
 

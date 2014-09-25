@@ -5,7 +5,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="Robot Framework 2.8.1 (Python 2.7.5 on darwin)" name="Generator">
+<meta content="Robot Framework 2.8.5 (Python 2.7.3 on linux2)" name="Generator">
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAAAAAAAAJEBoACtnfgA5cYYAERsiAEx2lAAbKkQAcazBACZCVwAcM1cAK0ucAAMDBQAnQncASG+FABkoVQAyWmgA6f8SgvH/Ij99+GLyIinyJfn/Yi//KSLzUy9iZogpIld3/4JVVTkid7vyUjNVNVJEAGOZ6Z7pXwAABpmZkRiLAAAGiJZpmGAAAEEt3SXdxAAATC7o/u3EAAC8MRZpjasAAAY1VVVTYAAABKqqqqpAAAAADKqq4AAAAAAAv4sAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMADAADgAwAA4AcAAOAHAADgBwAAwAcAAOAHAADgDwAA8A8AAPg/AAD+fwAA">
 <style media="all" type="text/css">
 /* Generic and misc styles */
@@ -222,8 +222,12 @@ th.stats-col-graph:hover {
 .test {
     border-style: dashed;
 }
-#errors, .metadata, .messages {
+#errors, .messages, .metadata {
     width: 100%;
+    border-spacing: 0;
+}
+#errors td, .messages td, .metadata th, .metadata td {
+    padding: 0.2em;
 }
 .children {
     display: none;
@@ -239,7 +243,7 @@ th.stats-col-graph:hover {
 .element-header {
     border: 1px solid transparent;
     border-radius: 2px;
-    padding: 0.3em 6em 0.3em 1.4em;
+    padding: 0.3em 6.5em 0.3em 1.4em;
     background-repeat: no-repeat;
     background-position: left center;
     background-image: url(data:image/gif;base64,R0lGODlhDQALAIAAAAAAAAAAACH5BAEKAAEALAAAAAANAAsAAAIZTICpYGz/nIOxUShvPU1ZroHTlYWlJi1LAQA7);
@@ -257,7 +261,7 @@ th.stats-col-graph:hover {
 }
 .expand {
     float: right;
-    margin-right: -7em;
+    margin-right: -6em;
     font-size: 0.8em;
     width: 7em;
     padding: 0.3em 0 0.1em 0;
@@ -270,10 +274,28 @@ th.stats-col-graph:hover {
     background-color: #BBBBFF;
     color: black !important;
 }
+.ext-link, .ext-link:link, .ext-link:visited {
+    float: right;
+    margin-right: -7em;
+    padding: 0 0.3em;
+    color: #C60F0F;
+    text-decoration: none;
+    visibility: hidden;
+}
+.element-header:hover .ext-link {
+    visibility: visible;
+}
+.ext-link:hover {
+    background: #C60F0F;
+    color: #ECECF7;
+}
 /* Messages and errors */
 .messages {
     font-family: monospace;
     font-size: 1.1em;
+}
+.message-row {
+    height: 17px;
 }
 .time {
     width: 8em;
@@ -285,6 +307,18 @@ th.stats-col-graph:hover {
 .level {
     width: 4.5em;
     text-align: center;
+}
+.select-text {
+    width: 2em;
+    background-position: top right;
+    background-repeat: no-repeat;
+}
+.message-row:hover .select-text {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAV1BMVEXq7/atw9u6zOHS3uvA0eP3+fvZ4+7g6PHO2+n5+vz1+PvAwMC+z+KQkJDx9fm1yd/s8ffa5O/I1+fU4Oz////t8vf6+/3c5fC4y+Dj6vPv8/ju8/fd5vA594LsAAAAXklEQVQYlW3PVxKAIAwE0NhLRGxY0Puf05hRCIzvjx2yAVAYUIBLAAFNKhgKIBHoiP3klU10Y3s6zs47uHR3Zt4iRmoORGlWFX9rbS5YCgbNLvf0d2R0wQqs/YL4+ze2IArI2yb6sQAAAABJRU5ErkJggg==);
+}
+.message-row:hover .select-text:hover {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAV1BMVEXv833O26y1yc+tw9v5+m/c5Zjq74T1+HTx9Xrt8oDU4KPAwE3//2b3+XLa5JvS3qfs8YHg6JOQkDrd5pbZ45zj6o6+z8O6zMnu8376+27I17TA0cC4y8w8SaSaAAAAXklEQVQYlW3PWQ6AIAwE0LpVsSqK+3L/c4qNQiG+PyZ0CmAoYICaAAGpVVA2wExAG1SHN+XRjeLp2BZv5tLLqXmLGEk4EKV6aP/WwinYI/UpG93T35HOBTuy8gvi798gGQzuN7QrSQAAAABJRU5ErkJggg==);
+    cursor: pointer;
 }
 /* Message tables - these MUST NOT be combined together because otherwise
    dynamically altering them based on visible log level is not possible. */
@@ -323,7 +357,7 @@ a:link, a:visited {
 .details, .statistics {
     width: 100%;
 }
-#generated-ago, #top-right-header, #normal-selector,
+#generated-ago, #top-right-header, #normal-selector, #search-buttons,
 .folding-button, .expand, .hidden, .details-col-toggle {
     display: none;
 }
@@ -389,10 +423,15 @@ a:link, a:visited {
     empty-cells: show;
     font-size: 0.9em;
 }
-.doc table td {
+.doc table th, .doc table td {
     border: 1px solid gray;
+    background: transparent;
     padding: 0.1em 0.3em;
     height: 1.2em;
+}
+.doc table th {
+    text-align: center;
+    letter-spacing: 0.1em;
 }
 .doc pre {
     font-size: 1.1em;
@@ -553,6 +592,25 @@ function getRules(style) {
         return null;
     }
 }
+function selectMessage(parentId) {
+    var element = $('#' + parentId).find('.message').get(0);
+    selectText(element);
+}
+function selectText(element) {
+    // Based on http://stackoverflow.com/questions/985272
+    var range, selection;
+    if (document.body.createTextRange) {  // IE 8
+        range = document.body.createTextRange();
+        range.moveToElementText(element);
+        range.select();
+    } else if (window.getSelection) {  // Others
+        selection = window.getSelection();
+        range = document.createRange();
+        range.selectNodeContents(element);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+}
 function LogLevelController(minLevel, defaultLevel) {
     minLevel = LEVELS[minLevel];
     defaultLevel = LEVELS[defaultLevel];
@@ -599,7 +657,7 @@ function LogLevelController(minLevel, defaultLevel) {
 </script>
 <script type="text/javascript">
 /*
-    Copyright 2008-2011
+    Copyright 2008-2013
         Matthias Ehmann,
         Michael Gerhaeuser,
         Carsten Miller,
@@ -612,7 +670,7 @@ function LogLevelController(minLevel, defaultLevel) {
     You should have received a copy of the Apache License along with JSXCompressor.
     If not, see <http://www.apache.org/licenses/>.
 */
-    JXG={exists:(function(a){return function(b){return !(b===a||b===null)}})()};JXG.decompress=function(a){return unescape((new JXG.Util.Unzip(JXG.Util.Base64.decodeAsArray(a))).unzip()[0][0])};JXG.Util={};JXG.Util.Unzip=function(Q){var m=[],D="",B=false,y,E=0,N=[],q,h=new Array(32768),V=0,I=false,S,F,U=[0,128,64,192,32,160,96,224,16,144,80,208,48,176,112,240,8,136,72,200,40,168,104,232,24,152,88,216,56,184,120,248,4,132,68,196,36,164,100,228,20,148,84,212,52,180,116,244,12,140,76,204,44,172,108,236,28,156,92,220,60,188,124,252,2,130,66,194,34,162,98,226,18,146,82,210,50,178,114,242,10,138,74,202,42,170,106,234,26,154,90,218,58,186,122,250,6,134,70,198,38,166,102,230,22,150,86,214,54,182,118,246,14,142,78,206,46,174,110,238,30,158,94,222,62,190,126,254,1,129,65,193,33,161,97,225,17,145,81,209,49,177,113,241,9,137,73,201,41,169,105,233,25,153,89,217,57,185,121,249,5,133,69,197,37,165,101,229,21,149,85,213,53,181,117,245,13,141,77,205,45,173,109,237,29,157,93,221,61,189,125,253,3,131,67,195,35,163,99,227,19,147,83,211,51,179,115,243,11,139,75,203,43,171,107,235,27,155,91,219,59,187,123,251,7,135,71,199,39,167,103,231,23,151,87,215,55,183,119,247,15,143,79,207,47,175,111,239,31,159,95,223,63,191,127,255],Y=[3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258,0,0],P=[0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0,99,99],J=[1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577],x=[0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13],n=[16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15],u=Q,b=0,g=0,Z=1,a=0,X=256,f=[],j;function d(){a+=8;if(b<u.length){return u[b++]}else{return -1}}function o(){Z=1}function T(){var ab;a++;ab=(Z&1);Z>>=1;if(Z==0){Z=d();ab=(Z&1);Z=(Z>>1)|128}return ab}function R(ab){var ad=0,ac=ab;while(ac--){ad=(ad<<1)|T()}if(ab){ad=U[ad]>>(8-ab)}return ad}function c(){V=0}function v(ab){F++;h[V++]=ab;m.push(String.fromCharCode(ab));if(V==32768){V=0}}function l(){this.b0=0;this.b1=0;this.jump=null;this.jumppos=-1}var e=288;var t=new Array(e);var L=new Array(32);var G=0;var W=null;var p=null;var K=new Array(64);var H=new Array(64);var w=0;var A=new Array(17);A[0]=0;var M;var s;function i(){while(1){if(A[w]>=s){return -1}if(M[A[w]]==w){return A[w]++}A[w]++}}function C(){var ac=W[G];var ab;if(B){document.write("<br>len:"+w+" treepos:"+G)}if(w==17){return -1}G++;w++;ab=i();if(B){document.write("<br>IsPat "+ab)}if(ab>=0){ac.b0=ab;if(B){document.write("<br>b0 "+ac.b0)}}else{ac.b0=32768;if(B){document.write("<br>b0 "+ac.b0)}if(C()){return -1}}ab=i();if(ab>=0){ac.b1=ab;if(B){document.write("<br>b1 "+ac.b1)}ac.jump=null}else{ac.b1=32768;if(B){document.write("<br>b1 "+ac.b1)}ac.jump=W[G];ac.jumppos=G;if(C()){return -1}}w--;return 0}function k(af,ad,ag,ac){var ae;if(B){document.write("currentTree "+af+" numval "+ad+" lengths "+ag+" show "+ac)}W=af;G=0;M=ag;s=ad;for(ae=0;ae<17;ae++){A[ae]=0}w=0;if(C()){if(B){alert("invalid huffman tree\n")}return -1}if(B){document.write("<br>Tree: "+W.length);for(var ab=0;ab<32;ab++){document.write("Places["+ab+"].b0="+W[ab].b0+"<br>");document.write("Places["+ab+"].b1="+W[ab].b1+"<br>")}}return 0}function z(ae){var ac,ad,ag=0,af=ae[ag],ab;while(1){ab=T();if(B){document.write("b="+ab)}if(ab){if(!(af.b1&32768)){if(B){document.write("ret1")}return af.b1}af=af.jump;ac=ae.length;for(ad=0;ad<ac;ad++){if(ae[ad]===af){ag=ad;break}}}else{if(!(af.b0&32768)){if(B){document.write("ret2")}return af.b0}ag++;af=ae[ag]}}if(B){document.write("ret3")}return -1}function aa(){var af,ar,ac,ap,aq;do{af=T();ac=R(2);switch(ac){case 0:if(B){alert("Stored\n")}break;case 1:if(B){alert("Fixed Huffman codes\n")}break;case 2:if(B){alert("Dynamic Huffman codes\n")}break;case 3:if(B){alert("Reserved block type!!\n")}break;default:if(B){alert("Unexpected value %d!\n",ac)}break}if(ac==0){var an,ab;o();an=d();an|=(d()<<8);ab=d();ab|=(d()<<8);if(((an^~ab)&65535)){document.write("BlockLen checksum mismatch\n")}while(an--){ar=d();v(ar)}}else{if(ac==1){var ao;while(1){ao=(U[R(7)]>>1);if(ao>23){ao=(ao<<1)|T();if(ao>199){ao-=128;ao=(ao<<1)|T()}else{ao-=48;if(ao>143){ao=ao+136}}}else{ao+=256}if(ao<256){v(ao)}else{if(ao==256){break}else{var aq,ak;ao-=256+1;aq=R(P[ao])+Y[ao];ao=U[R(5)]>>3;if(x[ao]>8){ak=R(8);ak|=(R(x[ao]-8)<<8)}else{ak=R(x[ao])}ak+=J[ao];for(ao=0;ao<aq;ao++){var ar=h[(V-ak)&32767];v(ar)}}}}}else{if(ac==2){var ao,al,ad,ai,aj;var ah=new Array(288+32);ad=257+R(5);ai=1+R(5);aj=4+R(4);for(ao=0;ao<19;ao++){ah[ao]=0}for(ao=0;ao<aj;ao++){ah[n[ao]]=R(3)}aq=L.length;for(ap=0;ap<aq;ap++){L[ap]=new l()}if(k(L,19,ah,0)){c();return 1}if(B){document.write("<br>distanceTree");for(var at=0;at<L.length;at++){document.write("<br>"+L[at].b0+" "+L[at].b1+" "+L[at].jump+" "+L[at].jumppos)}}al=ad+ai;ap=0;var ae=-1;if(B){document.write("<br>n="+al+" bits: "+a+"<br>")}while(ap<al){ae++;ao=z(L);if(B){document.write("<br>"+ae+" i:"+ap+" decode: "+ao+"    bits "+a+"<br>")}if(ao<16){ah[ap++]=ao}else{if(ao==16){var am;ao=3+R(2);if(ap+ao>al){c();return 1}am=ap?ah[ap-1]:0;while(ao--){ah[ap++]=am}}else{if(ao==17){ao=3+R(3)}else{ao=11+R(7)}if(ap+ao>al){c();return 1}while(ao--){ah[ap++]=0}}}}aq=t.length;for(ap=0;ap<aq;ap++){t[ap]=new l()}if(k(t,ad,ah,0)){c();return 1}aq=t.length;for(ap=0;ap<aq;ap++){L[ap]=new l()}var ag=new Array();for(ap=ad;ap<ah.length;ap++){ag[ap-ad]=ah[ap]}if(k(L,ai,ag,0)){c();return 1}if(B){document.write("<br>literalTree")}while(1){ao=z(t);if(ao>=256){var aq,ak;ao-=256;if(ao==0){break}ao--;aq=R(P[ao])+Y[ao];ao=z(L);if(x[ao]>8){ak=R(8);ak|=(R(x[ao]-8)<<8)}else{ak=R(x[ao])}ak+=J[ao];while(aq--){var ar=h[(V-ak)&32767];v(ar)}}else{v(ao)}}}}}}while(!af);c();o();return 0}JXG.Util.Unzip.prototype.unzipFile=function(ab){var ac;this.unzip();for(ac=0;ac<N.length;ac++){if(N[ac][1]==ab){return N[ac][0]}}};JXG.Util.Unzip.prototype.unzip=function(){if(B){alert(u)}r();return N};function r(){if(B){alert("NEXTFILE")}m=[];var af=[];I=false;af[0]=d();af[1]=d();if(B){alert("type: "+af[0]+" "+af[1])}if(af[0]==parseInt("78",16)&&af[1]==parseInt("da",16)){if(B){alert("GEONExT-GZIP")}aa();if(B){alert(m.join(""))}N[E]=new Array(2);N[E][0]=m.join("");N[E][1]="geonext.gxt";E++}if(af[0]==parseInt("1f",16)&&af[1]==parseInt("8b",16)){if(B){alert("GZIP")}O();if(B){alert(m.join(""))}N[E]=new Array(2);N[E][0]=m.join("");N[E][1]="file";E++}if(af[0]==parseInt("50",16)&&af[1]==parseInt("4b",16)){I=true;af[2]=d();af[3]=d();if(af[2]==parseInt("3",16)&&af[3]==parseInt("4",16)){af[0]=d();af[1]=d();if(B){alert("ZIP-Version: "+af[1]+" "+af[0]/10+"."+af[0]%10)}y=d();y|=(d()<<8);if(B){alert("gpflags: "+y)}var ab=d();ab|=(d()<<8);if(B){alert("method: "+ab)}d();d();d();d();var ag=d();ag|=(d()<<8);ag|=(d()<<16);ag|=(d()<<24);var ae=d();ae|=(d()<<8);ae|=(d()<<16);ae|=(d()<<24);var aj=d();aj|=(d()<<8);aj|=(d()<<16);aj|=(d()<<24);if(B){alert("local CRC: "+ag+"\nlocal Size: "+aj+"\nlocal CompSize: "+ae)}var ac=d();ac|=(d()<<8);var ai=d();ai|=(d()<<8);if(B){alert("filelen "+ac)}ad=0;f=[];while(ac--){var ah=d();if(ah=="/"|ah==":"){ad=0}else{if(ad<X-1){f[ad++]=String.fromCharCode(ah)}}}if(B){alert("nameBuf: "+f)}if(!j){j=f}var ad=0;while(ad<ai){ah=d();ad++}S=4294967295;F=0;if(aj=0&&fileOut.charAt(j.length-1)=="/"){if(B){alert("skipdir")}}if(ab==8){aa();if(B){alert(m.join(""))}N[E]=new Array(2);N[E][0]=m.join("");N[E][1]=f.join("");E++}O()}}}function O(){var ag,ad=[],ae,ac,af,ab,ah;if((y&8)){ad[0]=d();ad[1]=d();ad[2]=d();ad[3]=d();if(ad[0]==parseInt("50",16)&&ad[1]==parseInt("4b",16)&&ad[2]==parseInt("07",16)&&ad[3]==parseInt("08",16)){ag=d();ag|=(d()<<8);ag|=(d()<<16);ag|=(d()<<24)}else{ag=ad[0]|(ad[1]<<8)|(ad[2]<<16)|(ad[3]<<24)}ae=d();ae|=(d()<<8);ae|=(d()<<16);ae|=(d()<<24);ac=d();ac|=(d()<<8);ac|=(d()<<16);ac|=(d()<<24);if(B){alert("CRC:")}}if(I){r()}ad[0]=d();if(ad[0]!=8){if(B){alert("Unknown compression method!")}return 0}y=d();if(B){if((y&~(parseInt("1f",16)))){alert("Unknown flags set!")}}d();d();d();d();d();af=d();if((y&4)){ad[0]=d();ad[2]=d();w=ad[0]+256*ad[1];if(B){alert("Extra field size: "+w)}for(ab=0;ab<w;ab++){d()}}if((y&8)){ab=0;f=[];while(ah=d()){if(ah=="7"||ah==":"){ab=0}if(ab<X-1){f[ab++]=ah}}if(B){alert("original file name: "+f)}}if((y&16)){while(ah=d()){}}if((y&2)){d();d()}aa();ag=d();ag|=(d()<<8);ag|=(d()<<16);ag|=(d()<<24);ac=d();ac|=(d()<<8);ac|=(d()<<16);ac|=(d()<<24);if(I){r()}}};JXG.Util.Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(c){var a=[],k,h,f,j,g,e,d,b=0;c=JXG.Util.Base64._utf8_encode(c);while(b<c.length){k=c.charCodeAt(b++);h=c.charCodeAt(b++);f=c.charCodeAt(b++);j=k>>2;g=((k&3)<<4)|(h>>4);e=((h&15)<<2)|(f>>6);d=f&63;if(isNaN(h)){e=d=64}else{if(isNaN(f)){d=64}}a.push([this._keyStr.charAt(j),this._keyStr.charAt(g),this._keyStr.charAt(e),this._keyStr.charAt(d)].join(""))}return a.join("")},decode:function(d,c){var a=[],l,j,g,k,h,f,e,b=0;d=d.replace(/[^A-Za-z0-9\+\/\=]/g,"");while(b<d.length){k=this._keyStr.indexOf(d.charAt(b++));h=this._keyStr.indexOf(d.charAt(b++));f=this._keyStr.indexOf(d.charAt(b++));e=this._keyStr.indexOf(d.charAt(b++));l=(k<<2)|(h>>4);j=((h&15)<<4)|(f>>2);g=((f&3)<<6)|e;a.push(String.fromCharCode(l));if(f!=64){a.push(String.fromCharCode(j))}if(e!=64){a.push(String.fromCharCode(g))}}a=a.join("");if(c){a=JXG.Util.Base64._utf8_decode(a)}return a},_utf8_encode:function(b){b=b.replace(/\r\n/g,"\n");var a="";for(var e=0;e<b.length;e++){var d=b.charCodeAt(e);if(d<128){a+=String.fromCharCode(d)}else{if((d>127)&&(d<2048)){a+=String.fromCharCode((d>>6)|192);a+=String.fromCharCode((d&63)|128)}else{a+=String.fromCharCode((d>>12)|224);a+=String.fromCharCode(((d>>6)&63)|128);a+=String.fromCharCode((d&63)|128)}}}return a},_utf8_decode:function(a){var d=[],f=0,g=0,e=0,b=0;while(f<a.length){g=a.charCodeAt(f);if(g<128){d.push(String.fromCharCode(g));f++}else{if((g>191)&&(g<224)){e=a.charCodeAt(f+1);d.push(String.fromCharCode(((g&31)<<6)|(e&63)));f+=2}else{e=a.charCodeAt(f+1);b=a.charCodeAt(f+2);d.push(String.fromCharCode(((g&15)<<12)|((e&63)<<6)|(b&63)));f+=3}}}return d.join("")},_destrip:function(f,d){var b=[],e,c,a=[];if(d==null){d=76}f.replace(/ /g,"");e=f.length/d;for(c=0;c<e;c++){b[c]=f.substr(c*d,d)}if(e!=f.length/d){b[b.length]=f.substr(e*d,f.length-(e*d))}for(c=0;c<b.length;c++){a.push(b[c])}return a.join("\n")},decodeAsArray:function(b){var d=this.decode(b),a=[],c;for(c=0;c<d.length;c++){a[c]=d.charCodeAt(c)}return a},decodeGEONExT:function(a){return decodeAsArray(destrip(a),false)}};JXG.Util.asciiCharCodeAt=function(b,a){var d=b.charCodeAt(a);if(d>255){switch(d){case 8364:d=128;break;case 8218:d=130;break;case 402:d=131;break;case 8222:d=132;break;case 8230:d=133;break;case 8224:d=134;break;case 8225:d=135;break;case 710:d=136;break;case 8240:d=137;break;case 352:d=138;break;case 8249:d=139;break;case 338:d=140;break;case 381:d=142;break;case 8216:d=145;break;case 8217:d=146;break;case 8220:d=147;break;case 8221:d=148;break;case 8226:d=149;break;case 8211:d=150;break;case 8212:d=151;break;case 732:d=152;break;case 8482:d=153;break;case 353:d=154;break;case 8250:d=155;break;case 339:d=156;break;case 382:d=158;break;case 376:d=159;break;default:break}}return d};JXG.Util.utf8Decode=function(a){var d=[];var f=0;var h=0,g=0,e=0,b;if(!JXG.exists(a)){return""}while(f<a.length){h=a.charCodeAt(f);if(h<128){d.push(String.fromCharCode(h));f++}else{if((h>191)&&(h<224)){e=a.charCodeAt(f+1);d.push(String.fromCharCode(((h&31)<<6)|(e&63)));f+=2}else{e=a.charCodeAt(f+1);b=a.charCodeAt(f+2);d.push(String.fromCharCode(((h&15)<<12)|((e&63)<<6)|(b&63)));f+=3}}}return d.join("")};JXG.Util.genUUID=function(){var e="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split(""),c=new Array(36),b=0,d;for(var a=0;a<36;a++){if(a==8||a==13||a==18||a==23){c[a]="-"}else{if(a==14){c[a]="4"}else{if(b<=2){b=33554432+(Math.random()*16777216)|0}d=b&15;b=b>>4;c[a]=e[(a==19)?(d&3)|8:d]}}}return c.join("")};
+(function(){var e,r,n;(function(t){function o(e,r){return y.call(e,r)}function i(e,r){var n,t,o,i,u,f,a,c,s,l,p=r&&r.split("/"),d=k.map,g=d&&d["*"]||{};if(e&&"."===e.charAt(0))if(r){for(p=p.slice(0,p.length-1),e=p.concat(e.split("/")),c=0;e.length>c;c+=1)if(l=e[c],"."===l)e.splice(c,1),c-=1;else if(".."===l){if(1===c&&(".."===e[2]||".."===e[0]))break;c>0&&(e.splice(c-1,2),c-=2)}e=e.join("/")}else 0===e.indexOf("./")&&(e=e.substring(2));if((p||g)&&d){for(n=e.split("/"),c=n.length;c>0;c-=1){if(t=n.slice(0,c).join("/"),p)for(s=p.length;s>0;s-=1)if(o=d[p.slice(0,s).join("/")],o&&(o=o[t])){i=o,u=c;break}if(i)break;!f&&g&&g[t]&&(f=g[t],a=c)}!i&&f&&(i=f,u=a),i&&(n.splice(0,u,i),e=n.join("/"))}return e}function u(e,r){return function(){return d.apply(t,v.call(arguments,0).concat([e,r]))}}function f(e){return function(r){return i(r,e)}}function a(e){return function(r){b[e]=r}}function c(e){if(o(m,e)){var r=m[e];delete m[e],C[e]=!0,p.apply(t,r)}if(!o(b,e)&&!o(C,e))throw Error("No "+e);return b[e]}function s(e){var r,n=e?e.indexOf("!"):-1;return n>-1&&(r=e.substring(0,n),e=e.substring(n+1,e.length)),[r,e]}function l(e){return function(){return k&&k.config&&k.config[e]||{}}}var p,d,g,h,b={},m={},k={},C={},y=Object.prototype.hasOwnProperty,v=[].slice;g=function(e,r){var n,t=s(e),o=t[0];return e=t[1],o&&(o=i(o,r),n=c(o)),o?e=n&&n.normalize?n.normalize(e,f(r)):i(e,r):(e=i(e,r),t=s(e),o=t[0],e=t[1],o&&(n=c(o))),{f:o?o+"!"+e:e,n:e,pr:o,p:n}},h={require:function(e){return u(e)},exports:function(e){var r=b[e];return r!==void 0?r:b[e]={}},module:function(e){return{id:e,uri:"",exports:b[e],config:l(e)}}},p=function(e,r,n,i){var f,s,l,p,d,k,y=[];if(i=i||e,"function"==typeof n){for(r=!r.length&&n.length?["require","exports","module"]:r,d=0;r.length>d;d+=1)if(p=g(r[d],i),s=p.f,"require"===s)y[d]=h.require(e);else if("exports"===s)y[d]=h.exports(e),k=!0;else if("module"===s)f=y[d]=h.module(e);else if(o(b,s)||o(m,s)||o(C,s))y[d]=c(s);else{if(!p.p)throw Error(e+" missing "+s);p.p.load(p.n,u(i,!0),a(s),{}),y[d]=b[s]}l=n.apply(b[e],y),e&&(f&&f.exports!==t&&f.exports!==b[e]?b[e]=f.exports:l===t&&k||(b[e]=l))}else e&&(b[e]=n)},e=r=d=function(e,r,n,o,i){return"string"==typeof e?h[e]?h[e](r):c(g(e,r).f):(e.splice||(k=e,r.splice?(e=r,r=n,n=null):e=t),r=r||function(){},"function"==typeof n&&(n=o,o=i),o?p(t,e,r,n):setTimeout(function(){p(t,e,r,n)},4),d)},d.config=function(e){return k=e,k.deps&&d(k.deps,k.callback),d},n=function(e,r,n){r.splice||(n=r,r=[]),o(b,e)||o(m,e)||(m[e]=[e,r,n])},n.amd={jQuery:!0}})(),n("../node_modules/almond/almond",function(){}),n("jxg",[],function(){var e={};return"object"!=typeof JXG||JXG.extend||(e=JXG),e.extend=function(e,r,n,t){var o,i;n=n||!1,t=t||!1;for(o in r)(!n||n&&r.hasOwnProperty(o))&&(i=t?o.toLowerCase():o,e[i]=r[o])},e.extend(e,{boards:{},readers:{},elements:{},registerElement:function(e,r){e=e.toLowerCase(),this.elements[e]=r},registerReader:function(e,r){var n,t;for(n=0;r.length>n;n++)t=r[n].toLowerCase(),"function"!=typeof this.readers[t]&&(this.readers[t]=e)},shortcut:function(e,r){return function(){return e[r].apply(this,arguments)}},getRef:function(e,r){return e.select(r)},getReference:function(e,r){return e.select(r)},debugInt:function(){var e,r;for(e=0;arguments.length>e;e++)r=arguments[e],"object"==typeof window&&window.console&&console.log?console.log(r):"object"==typeof document&&document.getElementById("debug")&&(document.getElementById("debug").innerHTML+=r+"<br/>")},debugWST:function(){var r=Error();e.debugInt.apply(this,arguments),r&&r.stack&&(e.debugInt("stacktrace"),e.debugInt(r.stack.split("\n").slice(1).join("\n")))},debugLine:function(){var r=Error();e.debugInt.apply(this,arguments),r&&r.stack&&e.debugInt("Called from",r.stack.split("\n").slice(2,3).join("\n"))},debug:function(){e.debugInt.apply(this,arguments)}}),e}),n("utils/zip",["jxg"],function(e){var r=[0,128,64,192,32,160,96,224,16,144,80,208,48,176,112,240,8,136,72,200,40,168,104,232,24,152,88,216,56,184,120,248,4,132,68,196,36,164,100,228,20,148,84,212,52,180,116,244,12,140,76,204,44,172,108,236,28,156,92,220,60,188,124,252,2,130,66,194,34,162,98,226,18,146,82,210,50,178,114,242,10,138,74,202,42,170,106,234,26,154,90,218,58,186,122,250,6,134,70,198,38,166,102,230,22,150,86,214,54,182,118,246,14,142,78,206,46,174,110,238,30,158,94,222,62,190,126,254,1,129,65,193,33,161,97,225,17,145,81,209,49,177,113,241,9,137,73,201,41,169,105,233,25,153,89,217,57,185,121,249,5,133,69,197,37,165,101,229,21,149,85,213,53,181,117,245,13,141,77,205,45,173,109,237,29,157,93,221,61,189,125,253,3,131,67,195,35,163,99,227,19,147,83,211,51,179,115,243,11,139,75,203,43,171,107,235,27,155,91,219,59,187,123,251,7,135,71,199,39,167,103,231,23,151,87,215,55,183,119,247,15,143,79,207,47,175,111,239,31,159,95,223,63,191,127,255],n=[3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258,0,0],t=[0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0,99,99],o=[1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577],i=[0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13],u=[16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15],f=256;return e.Util=e.Util||{},e.Util.Unzip=function(a){function c(){return q+=8,N>R?a[R++]:-1}function s(){T=1}function l(){var e;return q++,e=1&T,T>>=1,0===T&&(T=c(),e=1&T,T=128|T>>1),e}function p(e){for(var n=0,t=e;t--;)n=n<<1|l();return e&&(n=r[n]>>8-e),n}function d(){L=0}function g(e){A++,E[L++]=e,z.push(String.fromCharCode(e)),32768===L&&(L=0)}function h(){this.b0=0,this.b1=0,this.jump=null,this.jumppos=-1}function b(){for(;;){if(H[P]>=w)return-1;if(U[H[P]]===P)return H[P]++;H[P]++}}function m(){var e,r=F[X];if(17===P)return-1;if(X++,P++,e=b(),e>=0)r.b0=e;else if(r.b0=32768,m())return-1;if(e=b(),e>=0)r.b1=e,r.jump=null;else if(r.b1=32768,r.jump=F[X],r.jumppos=X,m())return-1;return P--,0}function k(e,r,n){var t;for(F=e,X=0,U=n,w=r,t=0;17>t;t++)H[t]=0;return P=0,m()?-1:0}function C(e){for(var r,n,t,o=0,i=e[o];;)if(t=l()){if(!(32768&i.b1))return i.b1;for(i=i.jump,r=e.length,n=0;r>n;n++)if(e[n]===i){o=n;break}}else{if(!(32768&i.b0))return i.b0;o++,i=e[o]}}function y(){var f,a,b,m,y,v,j,A,x,U,w,S,z,I,O,B,N;do if(f=l(),b=p(2),0===b)for(s(),U=c(),U|=c()<<8,S=c(),S|=c()<<8,65535&(U^~S)&&e.debug("BlockLen checksum mismatch\n");U--;)a=c(),g(a);else if(1===b)for(;;)if(y=r[p(7)]>>1,y>23?(y=y<<1|l(),y>199?(y-=128,y=y<<1|l()):(y-=48,y>143&&(y+=136))):y+=256,256>y)g(y);else{if(256===y)break;for(y-=257,x=p(t[y])+n[y],y=r[p(5)]>>3,i[y]>8?(w=p(8),w|=p(i[y]-8)<<8):w=p(i[y]),w+=o[y],y=0;x>y;y++)a=E[32767&L-w],g(a)}else if(2===b){for(j=Array(320),I=257+p(5),O=1+p(5),B=4+p(4),y=0;19>y;y++)j[y]=0;for(y=0;B>y;y++)j[u[y]]=p(3);for(x=J.length,m=0;x>m;m++)J[m]=new h;if(k(J,19,j,0))return d(),1;for(z=I+O,m=0,N=-1;z>m;)if(N++,y=C(J),16>y)j[m++]=y;else if(16===y){if(y=3+p(2),m+y>z)return d(),1;for(v=m?j[m-1]:0;y--;)j[m++]=v}else{if(y=17===y?3+p(3):11+p(7),m+y>z)return d(),1;for(;y--;)j[m++]=0}for(x=G.length,m=0;x>m;m++)G[m]=new h;if(k(G,I,j,0))return d(),1;for(x=G.length,m=0;x>m;m++)J[m]=new h;for(A=[],m=I;j.length>m;m++)A[m-I]=j[m];if(k(J,O,A,0))return d(),1;for(;;)if(y=C(G),y>=256){if(y-=256,0===y)break;for(y-=1,x=p(t[y])+n[y],y=C(J),i[y]>8?(w=p(8),w|=p(i[y]-8)<<8):w=p(i[y]),w+=o[y];x--;)a=E[32767&L-w],g(a)}else g(y)}while(!f);return d(),s(),0}function v(){var e,r,n,t,o,i,u,a,s=[];if(z=[],B=!1,s[0]=c(),s[1]=c(),120===s[0]&&218===s[1]&&(y(),O[I]=[z.join(""),"geonext.gxt"],I++),31===s[0]&&139===s[1]&&(S(),O[I]=[z.join(""),"file"],I++),80===s[0]&&75===s[1]&&(B=!0,s[2]=c(),s[3]=c(),3===s[2]&&4===s[3])){for(s[0]=c(),s[1]=c(),j=c(),j|=c()<<8,a=c(),a|=c()<<8,c(),c(),c(),c(),u=c(),u|=c()<<8,u|=c()<<16,u|=c()<<24,i=c(),i|=c()<<8,i|=c()<<16,i|=c()<<24,o=c(),o|=c()<<8,o|=c()<<16,o|=c()<<24,t=c(),t|=c()<<8,n=c(),n|=c()<<8,e=0,M=[];t--;)r=c(),"/"===r|":"===r?e=0:f-1>e&&(M[e++]=String.fromCharCode(r));for(x||(x=M),e=0;n>e;)r=c(),e++;A=0,8===a&&(y(),O[I]=Array(2),O[I][0]=z.join(""),O[I][1]=M.join(""),I++),S()}}var j,A,x,U,w,S,z=[],I=0,O=[],E=Array(32768),L=0,B=!1,N=a.length,R=0,T=1,q=0,G=Array(288),J=Array(32),X=0,F=null,P=(Array(64),Array(64),0),H=Array(17),M=[];H[0]=0,S=function(){var e,r,n,t,o,i,u=[];if(8&j&&(u[0]=c(),u[1]=c(),u[2]=c(),u[3]=c(),80===u[0]&&75===u[1]&&7===u[2]&&8===u[3]?(e=c(),e|=c()<<8,e|=c()<<16,e|=c()<<24):e=u[0]|u[1]<<8|u[2]<<16|u[3]<<24,r=c(),r|=c()<<8,r|=c()<<16,r|=c()<<24,n=c(),n|=c()<<8,n|=c()<<16,n|=c()<<24),B&&v(),u[0]=c(),8===u[0]){if(j=c(),c(),c(),c(),c(),c(),t=c(),4&j)for(u[0]=c(),u[2]=c(),P=u[0]+256*u[1],o=0;P>o;o++)c();if(8&j)for(o=0,M=[],i=c();i;)("7"===i||":"===i)&&(o=0),f-1>o&&(M[o++]=i),i=c();if(16&j)for(i=c();i;)i=c();2&j&&(c(),c()),y(),e=c(),e|=c()<<8,e|=c()<<16,e|=c()<<24,n=c(),n|=c()<<8,n|=c()<<16,n|=c()<<24,B&&v()}},e.Util.Unzip.prototype.unzipFile=function(e){var r;for(this.unzip(),r=0;O.length>r;r++)if(O[r][1]===e)return O[r][0];return""},e.Util.Unzip.prototype.unzip=function(){return v(),O}},e.Util}),n("utils/encoding",["jxg"],function(e){var r=0,n=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,8,8,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,10,3,3,3,3,3,3,3,3,3,3,3,3,4,3,3,11,6,6,6,5,8,8,8,8,8,8,8,8,8,8,8,0,12,24,36,60,96,84,12,12,12,48,72,12,12,12,12,12,12,12,12,12,12,12,12,12,0,12,12,12,12,12,0,12,0,12,12,12,24,12,12,12,12,12,24,12,24,12,12,12,12,12,12,12,12,12,24,12,12,12,12,12,24,12,12,12,12,12,12,12,24,12,12,12,12,12,12,12,12,12,36,12,36,12,12,12,36,12,12,12,12,12,36,12,36,12,12,12,36,12,12,12,12,12,12,12,12,12,12];return e.Util=e.Util||{},e.Util.UTF8={encode:function(e){var r,n,t="",o=e.length;if(e=e.replace(/\r\n/g,"\n"),"function"==typeof unescape&&"function"==typeof encodeURIComponent)return unescape(encodeURIComponent(e));for(r=0;o>r;r++)n=e.charCodeAt(r),128>n?t+=String.fromCharCode(n):n>127&&2048>n?(t+=String.fromCharCode(192|n>>6),t+=String.fromCharCode(128|63&n)):(t+=String.fromCharCode(224|n>>12),t+=String.fromCharCode(128|63&n>>6),t+=String.fromCharCode(128|63&n));return t},decode:function(e){var t,o,i,u=0,f=0,a=r,c=[],s=e.length,l=[];for(t=0;s>t;t++)o=e.charCodeAt(t),i=n[o],f=a!==r?63&o|f<<6:255>>i&o,a=n[256+a+i],a===r&&(f>65535?c.push(55232+(f>>10),56320+(1023&f)):c.push(f),u++,0===u%1e4&&(l.push(String.fromCharCode.apply(null,c)),c=[]));return l.push(String.fromCharCode.apply(null,c)),l.join("")},asciiCharCodeAt:function(e,r){var n=e.charCodeAt(r);if(n>255)switch(n){case 8364:n=128;break;case 8218:n=130;break;case 402:n=131;break;case 8222:n=132;break;case 8230:n=133;break;case 8224:n=134;break;case 8225:n=135;break;case 710:n=136;break;case 8240:n=137;break;case 352:n=138;break;case 8249:n=139;break;case 338:n=140;break;case 381:n=142;break;case 8216:n=145;break;case 8217:n=146;break;case 8220:n=147;break;case 8221:n=148;break;case 8226:n=149;break;case 8211:n=150;break;case 8212:n=151;break;case 732:n=152;break;case 8482:n=153;break;case 353:n=154;break;case 8250:n=155;break;case 339:n=156;break;case 382:n=158;break;case 376:n=159;break;default:}return n}},e.Util.UTF8}),n("utils/base64",["jxg","utils/encoding"],function(e,r){var n="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";return e.Util=e.Util||{},e.Util.Base64={encode:function(e){var t,o,i,u,f,a,c,s=[],l=0;for(e=r.encode(e);e.length>l;)t=e.charCodeAt(l++),o=e.charCodeAt(l++),i=e.charCodeAt(l++),u=t>>2,f=(3&t)<<4|o>>4,a=(15&o)<<2|i>>6,c=63&i,isNaN(o)?a=c=64:isNaN(i)&&(c=64),s.push([n.charAt(u),n.charAt(f),n.charAt(a),n.charAt(c)].join(""));return s.join("")},decode:function(e,t){var o,i,u,f,a,c,s,l=[],p=0,d=e.length;for(e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");d>p;)f=n.indexOf(e.charAt(p++)),a=n.indexOf(e.charAt(p++)),c=n.indexOf(e.charAt(p++)),s=n.indexOf(e.charAt(p++)),o=f<<2|a>>4,i=(15&a)<<4|c>>2,u=(3&c)<<6|s,l.push(String.fromCharCode(o)),64!==c&&l.push(String.fromCharCode(i)),64!==s&&l.push(String.fromCharCode(u));return l=l.join(""),t&&(l=r.decode(l)),l},decodeAsArray:function(e){var r,n=this.decode(e),t=[],o=n.length;for(r=0;o>r;r++)t[r]=n.charCodeAt(r);return t}},e.Util.Base64}),n("../build/compressor.deps.js",["jxg","utils/zip","utils/base64"],function(e,r,n){return e.decompress=function(e){return unescape(new r.Unzip(n.decodeAsArray(e)).unzip()[0][0])},e}),window.JXG=r("../build/compressor.deps.js")})();
 </script>
 <script type="text/javascript">
 window.fileLoading = (function () {
@@ -679,6 +737,17 @@ window.model = (function () {
                 tests = tests.concat(suites[i].searchTests(predicate));
             return tests.concat(util.filter(this.tests(), predicate));
         };
+        suite.searchTestsInSuite = function (pattern, matcher) {
+            if (!matcher)
+                matcher = util.Matcher(pattern);
+            if (matcher.matchesAny([suite.fullName, suite.name]))
+                return suite.allTests();
+            var tests = [];
+            var suites = this.suites();
+            for (var i in suites)
+                tests = tests.concat(suites[i].searchTestsInSuite(pattern, matcher));
+            return tests;
+        }
         suite.searchTestsByTag = function (tag) {
             return suite.searchTests(function (test) {
                 if (tag.combined)
@@ -706,23 +775,27 @@ window.model = (function () {
         return util.contains(testTags, util.normalize(tagname));
     }
     function containsTagPattern(testTags, pattern) {
+        var patterns;
         if (pattern.indexOf('NOT') != -1) {
-            var tagnames = pattern.split('NOT');
-            var required = tagnames[0];
-            var notAllowed = tagnames.slice(1);
-            return containsTagPattern(testTags, required) &&
-                util.all(util.map(notAllowed, function (name) {
-                    return !containsTagPattern(testTags, name);
+            patterns = pattern.split('NOT');
+            return containsTagPattern(testTags, patterns[0]) &&
+                util.all(util.map(patterns.slice(1), function (p) {
+                    return !containsTagPattern(testTags, p);
                 }));
         }
-        if (pattern.indexOf('AND') != -1) {
-            var tagnames = pattern.split('AND');
-            return util.all(util.map(tagnames, function (name) {
-                return containsTagPattern(testTags, name);
+        if (pattern.indexOf('OR') != -1) {
+            patterns = pattern.split('OR');
+            return util.any(util.map(patterns, function (p) {
+                return containsTagPattern(testTags, p);
             }));
         }
-        testTags = util.map(testTags, util.normalize);
-        return util.any(util.map(testTags, util.Matcher(pattern).matches));
+        if (pattern.indexOf('AND') != -1) {
+            patterns = pattern.split('AND');
+            return util.all(util.map(patterns, function (p) {
+                return containsTagPattern(testTags, p);
+            }));
+        }
+        return util.Matcher(pattern).matchesAny(testTags);
     }
     function findSuiteByName(suite, name) {
         if (suite.fullName == name)
@@ -765,6 +838,12 @@ window.model = (function () {
         test.isCritical = data.isCritical;
         test.tags = data.tags;
         test.message = data.message;
+        test.matchesTagPattern = function (pattern) {
+            return containsTagPattern(test.tags, pattern);
+        };
+        test.matchesNamePattern = function (pattern) {
+            return util.Matcher(pattern).matchesAny([test.name, test.fullName]);
+        };
         return test;
     }
     function Keyword(data) {
@@ -954,6 +1033,9 @@ window.util = function () {
     function unescape(string) {
         return string.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
     }
+    function escape(string) {
+        return string.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
     function normalize(string) {
         return string.toLowerCase().replace(/ /g, '').replace(/_/g, '');
     }
@@ -964,9 +1046,18 @@ window.util = function () {
         pattern = regexpEscape(normalize(pattern));
         var rePattern = '^' + pattern.replace(/\\\?/g, ".").replace(/\\\*/g, ".*") + '$';
         var regexp = new RegExp(rePattern);
-        return {
-            matches: function (string) { return regexp.test(string); }
+        function matches(string) {
+            return regexp.test(normalize(string));
         }
+        return {
+            matches: matches,
+            matchesAny: function (strings) {
+                for (var i = 0, len = strings.length; i < len; i++)
+                    if (matches(strings[i]))
+                        return true;
+                return false;
+            }
+        };
     }
     function formatParentName(item) {
         var parentName = item.fullName.slice(0, item.fullName.length - item.name.length);
@@ -1019,8 +1110,8 @@ window.util = function () {
     function createGeneratedAgoString(generatedMillis) {
         generatedMillis = timestamp(generatedMillis);
         function timeString(time, shortUnit) {
-            var unit = {'y': 'year', 'd': 'day', 'h': 'hour',
-                        'm': 'minute', 's': 'second'}[shortUnit];
+            var unit = {y: 'year', d: 'day', h: 'hour', m: 'minute',
+                        s: 'second'}[shortUnit];
             var end = time == 1 ? ' ' : 's ';
             return time + ' ' + unit + end;
         }
@@ -1031,29 +1122,43 @@ window.util = function () {
         var generated = Math.round(generatedMillis / 1000);
         var current = Math.round(new Date().getTime() / 1000);
         var elapsed = current - generated;
+        var prefix = '';
         if (elapsed < 0) {
-            elapsed = Math.abs(elapsed);
             prefix = '- ';
-        } else {
-            prefix = '';
+            elapsed = Math.abs(elapsed);
         }
         var secs  = elapsed % 60;
         var mins  = Math.floor(elapsed / 60) % 60;
         var hours = Math.floor(elapsed / (60*60)) % 24;
         var days  = Math.floor(elapsed / (60*60*24)) % 365;
         var years = Math.floor(elapsed / (60*60*24*365));
-        if (years > 0) {
+        if (years) {
             days = compensateLeapYears(days, years);
             return prefix + timeString(years, 'y') + timeString(days, 'd');
-        } else if (days > 0) {
+        } else if (days) {
             return prefix + timeString(days, 'd') + timeString(hours, 'h');
-        } else if (hours > 0) {
+        } else if (hours) {
             return prefix + timeString(hours, 'h') + timeString(mins, 'm');
-        } else if (mins > 0) {
+        } else if (mins) {
             return prefix + timeString(mins, 'm') + timeString(secs, 's');
         } else {
             return prefix + timeString(secs, 's');
         }
+    }
+    function parseQueryString(query) {
+        var result = {};
+        if (!query)
+            return result;
+        var params = query.split('&');
+        var parts;
+        function decode(item) {
+            return decodeURIComponent(item.replace('+', ' '));
+        }
+        for (var i = 0, len = params.length; i < len; i++) {
+            parts = params[i].split('=');
+            result[decode(parts.shift())] = decode(parts.join('='));
+        }
+        return result;
     }
     return {
         map: map,
@@ -1062,6 +1167,7 @@ window.util = function () {
         any: any,
         contains: contains,
         last: last,
+        escape: escape,
         unescape: unescape,
         normalize: normalize,
         Matcher: Matcher,
@@ -1071,7 +1177,8 @@ window.util = function () {
         dateTimeFromDate: dateTimeFromDate,
         formatElapsed: formatElapsed,
         timestamp: timestamp,
-        createGeneratedAgoString: createGeneratedAgoString
+        createGeneratedAgoString: createGeneratedAgoString,
+        parseQueryString: parseQueryString
     };
 }();
 </script>
@@ -1318,7 +1425,7 @@ window.testdata = function () {
         function extract(text) {
             var decoded = JXG.Util.Base64.decodeAsArray(text);
             var extracted = (new JXG.Util.Unzip(decoded)).unzip()[0][0];
-            return JXG.Util.utf8Decode(extracted);
+            return JXG.Util.UTF8.decode(extracted);
         }
         function get(id) {
             if (id === null) return null;
@@ -1342,7 +1449,9 @@ function removeJavaScriptDisabledWarning() {
     // Not using jQuery here for maximum speed
     document.getElementById('javascript-disabled').style.display = 'none';
 }
-function addJavaScriptDisabledWarning() {
+function addJavaScriptDisabledWarning(error) {
+    if (window.console)
+        console.error('Opening failed: ' + error.name + ': ' + error.message);
     document.getElementById('javascript-disabled').style.display = 'block';
 }
 function initLayout(suiteName, type) {
@@ -1507,28 +1616,28 @@ function stopPropagation(event) {
 window.output = {};
 </script>
 <script type="text/javascript">
-window.output["suite"] = [1,2,3,0,[],[1,0,6047],[],[[4,0,1,0,[],[1,115,2041],[[1,5,0,6,7,[1,115,1787],[[0,8,0,9,10,[1,115,1709],[],[[116,2,11]]],[0,12,0,0,0,[1,1824,78],[[0,13,0,14,15,[1,1825,21],[],[[1825,2,16]]],[0,17,0,18,19,[1,1846,55],[],[[1847,2,20]]]],[]]],[]],[0,21,0,0,22,[1,1902,130],[[0,13,0,14,23,[1,1902,16],[],[[1903,2,24]]],[0,25,0,26,27,[1,1918,41],[],[[1918,2,28]]],[0,25,0,26,29,[1,1959,38],[],[[1959,2,30]]],[0,17,0,18,0,[1,1997,35],[],[[1997,2,31]]]],[]],[0,32,0,0,33,[1,2032,10],[[0,34,0,35,36,[1,2032,10],[],[[2042,2,37]]]],[]],[0,38,0,0,22,[1,2043,39],[[0,13,0,14,15,[1,2043,18],[],[[2044,2,16]]],[0,34,0,35,39,[1,2062,11],[],[[2073,2,40]]],[0,34,0,35,41,[1,2074,8],[],[[2082,2,42]]]],[]],[2,5,0,6,43,[1,2082,74],[[0,12,0,0,0,[1,2083,44],[[0,13,0,14,15,[1,2083,19],[],[[2083,2,16]]],[0,17,0,18,19,[1,2102,25],[],[[2102,2,20]]]],[]],[0,44,0,45,0,[1,2127,28],[],[]]],[]]]],[46,0,1,0,[],[1,2156,1961],[[1,5,0,6,7,[1,2157,1559],[[0,8,0,9,10,[1,2157,1488],[],[[2157,2,11]]],[0,12,0,0,0,[1,3645,71],[[0,13,0,14,15,[1,3645,20],[],[[3646,2,16]]],[0,17,0,18,19,[1,3665,50],[],[[3666,2,20]]]],[]]],[]],[0,21,0,0,22,[1,3716,122],[[0,13,0,14,23,[1,3716,16],[],[[3717,2,24]]],[0,25,0,26,27,[1,3733,39],[],[[3733,2,28]]],[0,25,0,26,29,[1,3773,34],[],[[3773,2,30]]],[0,17,0,18,0,[1,3807,31],[],[[3807,2,31]]]],[]],[0,21,0,0,47,[1,3838,111],[[0,13,0,14,23,[1,3839,16],[],[[3839,2,24]]],[0,25,0,26,27,[1,3856,33],[],[[3856,2,48]]],[0,25,0,26,29,[1,3890,32],[],[[3890,2,49]]],[0,17,0,18,0,[1,3922,27],[],[[3922,2,31]]]],[]],[0,32,0,0,50,[1,3949,9],[[0,34,0,35,36,[1,3950,8],[],[[3958,2,51]]]],[]],[0,38,0,0,47,[1,3959,42],[[0,13,0,14,15,[1,3959,19],[],[[3959,2,16]]],[0,34,0,35,39,[1,3979,12],[],[[3991,2,52]]],[0,34,0,35,41,[1,3991,10],[],[[4001,2,53]]]],[]],[0,38,0,0,22,[1,4001,40],[[0,13,0,14,15,[1,4001,21],[],[[4002,2,16]]],[0,34,0,35,39,[1,4022,10],[],[[4031,2,40]]],[0,34,0,35,41,[1,4032,9],[],[[4040,2,42]]]],[]],[2,5,0,6,43,[1,4041,76],[[0,12,0,0,0,[1,4041,47],[[0,13,0,14,15,[1,4042,20],[],[[4042,2,16]]],[0,17,0,18,19,[1,4062,26],[],[[4062,2,20]]]],[]],[0,44,0,45,0,[1,4088,29],[],[]]],[]]]],[54,0,1,0,[],[1,4118,1928],[[1,5,0,6,7,[1,4118,1564],[[0,8,0,9,10,[1,4119,1493],[],[[4119,2,11]]],[0,12,0,0,0,[1,5612,70],[[0,13,0,14,15,[1,5612,21],[],[[5613,2,16]]],[0,17,0,18,19,[1,5633,49],[],[[5633,2,20]]]],[]]],[]],[0,21,0,0,22,[1,5683,123],[[0,13,0,14,23,[1,5683,17],[],[[5683,2,24]]],[0,25,0,26,27,[1,5700,41],[],[[5700,2,28]]],[0,25,0,26,29,[1,5742,31],[],[[5742,2,30]]],[0,17,0,18,0,[1,5774,32],[],[[5774,2,31]]]],[]],[0,21,0,0,55,[1,5807,110],[[0,13,0,14,23,[1,5807,15],[],[[5807,2,24]]],[0,25,0,26,27,[1,5823,36],[],[[5823,2,28]]],[0,25,0,26,29,[1,5859,33],[],[[5859,2,56]]],[0,17,0,18,0,[1,5892,25],[],[[5892,2,31]]]],[]],[0,32,0,0,57,[1,5917,10],[[0,34,0,35,36,[1,5918,8],[],[[5926,2,58]]]],[]],[0,38,0,0,22,[1,5927,50],[[0,13,0,14,15,[1,5927,29],[],[[5927,2,16]]],[0,34,0,35,39,[1,5957,9],[],[[5966,2,40]]],[0,34,0,35,41,[1,5966,11],[],[[5977,2,42]]]],[]],[2,5,0,6,43,[1,5978,68],[[0,12,0,0,0,[1,5978,43],[[0,13,0,14,15,[1,5978,19],[],[[5979,2,16]]],[0,17,0,18,19,[1,5997,23],[],[[5998,2,20]]]],[]],[0,44,0,45,0,[1,6021,25],[],[]]],[]]]]],[],[3,3,3,3]];
+window.output["suite"] = [1,2,3,4,[],[1,0,8375],[],[[5,0,1,0,[],[1,171,8203],[[1,6,0,7,8,[1,172,4661],[[0,9,0,10,11,[1,172,4223],[],[[172,2,12]]],[0,13,0,0,0,[1,4414,419],[[0,14,0,15,16,[1,4426,241],[],[[4426,2,17]]],[0,18,0,19,20,[1,4667,166],[],[[4667,2,21]]]],[]]],[]],[0,22,0,0,23,[1,4834,1119],[[0,24,0,0,25,[1,4834,954],[[0,14,0,15,26,[1,4835,148],[],[[4835,2,27]]],[0,28,0,29,30,[1,4983,147],[],[[4984,2,31]]],[0,28,0,29,32,[1,5130,32],[],[[5130,2,33]]],[0,18,0,19,0,[1,5162,626],[],[[5163,2,34]]]],[]],[0,35,0,0,36,[1,5788,23],[[0,37,0,38,39,[1,5789,21],[[0,40,0,41,42,[1,5789,21],[],[[5810,2,43]]]],[]],[0,37,0,38,44,[1,5810,1],[],[]]],[]],[0,13,0,0,0,[1,5811,142],[[0,14,0,15,16,[1,5811,28],[],[[5811,2,17]]],[0,18,0,19,20,[1,5839,114],[],[[5839,2,21]]]],[]]],[]],[0,22,0,0,45,[1,5953,316],[[0,24,0,0,25,[1,5954,177],[[0,14,0,15,26,[1,5954,68],[],[[5954,2,27]]],[0,28,0,29,30,[1,6022,41],[],[[6022,2,46]]],[0,28,0,29,32,[1,6063,36],[],[[6063,2,33]]],[0,18,0,19,0,[1,6100,31],[],[[6100,2,34]]]],[]],[0,35,0,0,36,[1,6132,22],[[0,37,0,38,39,[1,6132,0],[],[]],[0,37,0,38,44,[1,6133,21],[[0,47,0,48,42,[1,6133,21],[],[[6154,2,49]]]],[]]],[]],[0,13,0,0,0,[1,6154,115],[[0,14,0,15,16,[1,6155,40],[],[[6155,2,17]]],[0,18,0,19,20,[1,6195,73],[],[[6196,2,21]]]],[]]],[]],[0,22,0,0,50,[1,6269,373],[[0,24,0,0,25,[1,6270,195],[[0,14,0,15,26,[1,6270,66],[],[[6271,2,27]]],[0,28,0,29,30,[1,6336,49],[],[[6336,2,51]]],[0,28,0,29,32,[1,6386,36],[],[[6386,2,33]]],[0,18,0,19,0,[1,6423,42],[],[[6423,2,34]]]],[]],[0,35,0,0,36,[1,6465,18],[[0,37,0,38,39,[1,6466,16],[[0,40,0,41,42,[1,6466,16],[],[[6482,2,43]]]],[]],[0,37,0,38,44,[1,6482,1],[],[]]],[]],[0,13,0,0,0,[1,6483,159],[[0,14,0,15,16,[1,6483,67],[],[[6483,2,17]]],[0,18,0,19,20,[1,6550,92],[],[[6551,2,21]]]],[]]],[]],[0,22,0,0,52,[1,6643,311],[[0,24,0,0,25,[1,6643,184],[[0,14,0,15,26,[1,6644,59],[],[[6644,2,27]]],[0,28,0,29,30,[1,6703,50],[],[[6703,2,53]]],[0,28,0,29,32,[1,6753,37],[],[[6753,2,33]]],[0,18,0,19,0,[1,6791,36],[],[[6791,2,34]]]],[]],[0,35,0,0,36,[1,6827,21],[[0,37,0,38,39,[1,6828,0],[],[]],[0,37,0,38,44,[1,6829,19],[[0,47,0,48,42,[1,6829,19],[],[[6848,2,49]]]],[]]],[]],[0,13,0,0,0,[1,6848,105],[[0,14,0,15,16,[1,6849,30],[],[[6849,2,17]]],[0,18,0,19,20,[1,6879,74],[],[[6880,2,21]]]],[]]],[]],[0,22,0,0,54,[1,6954,363],[[0,24,0,0,25,[1,6954,218],[[0,14,0,15,26,[1,6955,59],[],[[6955,2,27]]],[0,28,0,29,30,[1,7014,58],[],[[7015,2,31]]],[0,28,0,29,32,[1,7072,33],[],[[7072,2,55]]],[0,18,0,19,0,[1,7105,67],[],[[7105,2,34]]]],[]],[0,35,0,0,36,[1,7172,21],[[0,37,0,38,39,[1,7172,21],[[0,40,0,41,42,[1,7173,20],[],[[7193,2,43]]]],[]],[0,37,0,38,44,[1,7193,0],[],[]]],[]],[0,13,0,0,0,[1,7193,124],[[0,14,0,15,16,[1,7194,41],[],[[7194,2,17]]],[0,18,0,19,20,[1,7235,81],[],[[7235,2,21]]]],[]]],[]],[0,22,0,0,56,[1,7318,417],[[0,24,0,0,25,[1,7318,235],[[0,14,0,15,26,[1,7319,94],[],[[7319,2,27]]],[0,28,0,29,30,[1,7413,52],[],[[7413,2,31]]],[0,28,0,29,32,[1,7465,41],[],[[7466,2,57]]],[0,18,0,19,0,[1,7507,46],[],[[7507,2,34]]]],[]],[0,35,0,0,36,[1,7553,17],[[0,37,0,38,39,[1,7553,16],[[0,40,0,41,42,[1,7554,15],[],[[7569,2,43]]]],[]],[0,37,0,38,44,[1,7569,1],[],[]]],[]],[0,13,0,0,0,[1,7570,165],[[0,14,0,15,16,[1,7570,60],[],[[7570,2,17]]],[0,18,0,19,20,[1,7630,105],[],[[7630,2,21]]]],[]]],[]],[0,22,0,0,58,[1,7736,297],[[0,24,0,0,25,[1,7736,173],[[0,14,0,15,26,[1,7736,58],[],[[7737,2,27]]],[0,28,0,29,30,[1,7794,42],[],[[7794,2,31]]],[0,28,0,29,32,[1,7836,41],[],[[7837,2,59]]],[0,18,0,19,0,[1,7878,30],[],[[7878,2,34]]]],[]],[0,35,0,0,36,[1,7909,22],[[0,37,0,38,39,[1,7909,1],[],[]],[0,37,0,38,44,[1,7910,21],[[0,47,0,48,42,[1,7910,21],[],[[7931,2,49]]]],[]]],[]],[0,13,0,0,0,[1,7931,102],[[0,14,0,15,16,[1,7932,27],[],[[7933,2,17]]],[0,18,0,19,20,[1,7959,74],[],[[7959,2,21]]]],[]]],[]],[2,6,0,7,60,[1,8033,341],[[0,13,0,0,0,[1,8034,136],[[0,14,0,15,16,[1,8034,64],[],[[8035,2,17]]],[0,18,0,19,20,[1,8098,72],[],[[8098,2,21]]]],[]],[0,61,0,62,0,[1,8170,203],[],[]]],[]]]]],[],[1,1,1,1]];
 </script>
 <script type="text/javascript">
 window.output["strings"] = [];
 </script>
 <script type="text/javascript">
-window.output["strings"] = window.output["strings"].concat(["*","*PersonCreation","*/Users/Yi/Workspace/directory-server/test/PersonCreation.txt","*PersonCreation.txt","*SuccessfullyCreateAPerson","*BuiltIn.Run Keywords","*<p>Executes all the given keywords in a sequence.</p>","*Open Browser, ${SERVER}, AND, DeletePeople","*Selenium2Library.Open Browser","*<p>Opens a new browser instance to given URL.</p>","*${SERVER}","*Opening browser 'firefox' to base url '<a href=\"http://localhost:4567\">http://localhost:4567</a>'","*DeletePeople","*Selenium2Library.Go To","*<p>Navigates the active browser instance to the provided URL.</p>","*${SERVER}/people","*Opening url '<a href=\"http://localhost:4567/people\">http://localhost:4567/people</a>'","*Selenium2Library.Submit Form","*<p>Submits a form identified by `locator`.</p>","*destroy","*Submitting form 'destroy'.","*CreatePerson","*Lv Yi, Coach","*${SERVER}/create","*Opening url '<a href=\"http://localhost:4567/create\">http://localhost:4567/create</a>'","*Selenium2Library.Input Text","*<p>Types the given `text` into text field identified by `locator`.</p>","*name, ${name}","*Typing text 'Lv Yi' into text field 'name'","*title, ${title}","*Typing text 'Coach' into text field 'title'","*Submitting form 'None'.","*VerifyOutput","*Lv Yi, Coach has been created!","*Selenium2Library.Page Should Contain","*<p>Verifies that current page contains `text`.</p>","*${output}","*Current page contains text 'Lv Yi, Coach has been created!'.","*VerifyPerson","*${name}","*Current page contains text 'Lv Yi'.","*${title}","*Current page contains text 'Coach'.","*DeletePeople, AND, Close Browser","*Selenium2Library.Close Browser","*<p>Closes the current browser.</p>","*SuccessfullyCreateMultiplePersons","*Lv Lechun, Daughter","*Typing text 'Lv Lechun' into text field 'name'","*Typing text 'Daughter' into text field 'title'","*Lv Lechun, Daughter has been created!","*Current page contains text 'Lv Lechun, Daughter has been created!'.","*Current page contains text 'Lv Lechun'.","*Current page contains text 'Daughter'.","*NotCreateSamePerson","*Lv Yi, Developer","*Typing text 'Developer' into text field 'title'","*Lv Yi already exists!","*Current page contains text 'Lv Yi already exists!'."]);
+window.output["strings"] = window.output["strings"].concat(["*","*PersonCreationRulesOnNameAndTitle","*/home/atdd/workspace/atdd_exercises/test/PersonCreationRulesOnNameAndTitle.txt","*PersonCreationRulesOnNameAndTitle.txt","*<p>Table format of rules on name and title rules need to check: legal letters for name name length title should be in pre-defined set\x3c/p>","*Check rules on Name and Title","*BuiltIn.Run Keywords","*<p>Executes all the given keywords in a sequence.\x3c/p>","*Open Browser, ${SERVER}, AND, DeletePeople","*Selenium2Library.Open Browser","*<p>Opens a new browser instance to given URL.\x3c/p>","*${SERVER}","*Opening browser 'firefox' to base url '<a href=\"http://localhost:4567\">http://localhost:4567\x3c/a>'","*PersonResource.DeletePeople","*Selenium2Library.Go To","*<p>Navigates the active browser instance to the provided URL.\x3c/p>","*${SERVER}/people","*Opening url '<a href=\"http://localhost:4567/people\">http://localhost:4567/people\x3c/a>'","*Selenium2Library.Submit Form","*<p>Submits a form identified by `locator`.\x3c/p>","*destroy","*Submitting form 'destroy'.","*PersonResource.ApplyRulesOnCreatingPerson","*Lv Yi, Coach, SUCCESS","*PersonResource.CreatePerson","*${name}, ${title}","*${SERVER}/create","*Opening url '<a href=\"http://localhost:4567/create\">http://localhost:4567/create\x3c/a>'","*Selenium2Library.Input Text","*<p>Types the given `text` into text field identified by `locator`.\x3c/p>","*name, ${name}","*Typing text 'Lv Yi' into text field 'name'","*title, ${title}","*Typing text 'Coach' into text field 'title'","*Submitting form 'None'.","*PersonResource.CheckExpectation","*${exp}","*BuiltIn.Run Keyword If","*<p>Runs the given keyword with the given arguments, if `condition` is true.\x3c/p>","*'${exp}' == 'SUCCESS', Page Should Contain, created","*Selenium2Library.Page Should Contain","*<p>Verifies that current page contains `text`.\x3c/p>","*created","*Current page contains text 'created'.","*'${exp}' == 'FAILURE', Page Should not Contain, created","*20 Lv Yi, Coach, FAILURE","*Typing text '20 Lv Yi' into text field 'name'","*Selenium2Library.Page Should Not Contain","*<p>Verifies the current page does not contain `text`.\x3c/p>","*Current page does not contain text 'created'.","*Lv Yi 88888888888888, Coach, SUCCESS","*Typing text 'Lv Yi 88888888888888' into text field 'name'","*Lv Yi 888888888888888, Coach, FAILURE","*Typing text 'Lv Yi 888888888888888' into text field 'name'","*Lv Yi, ${EMPTY}, SUCCESS","*Typing text '' into text field 'title'","*Lv Yi, Developer, SUCCESS","*Typing text 'Developer' into text field 'title'","*Lv Yi, Engineer, FAILURE","*Typing text 'Engineer' into text field 'title'","*DeletePeople, AND, Close Browser","*Selenium2Library.Close Browser","*<p>Closes the current browser.\x3c/p>"]);
 </script>
 <script type="text/javascript">
-window.output["generatedTimestamp"] = "20140711 16:14:39 GMT +08:00";
+window.output["generatedTimestamp"] = "20140925 20:49:12 GMT +08:00";
 </script>
 <script type="text/javascript">
 window.output["errors"] = [];
 </script>
 <script type="text/javascript">
-window.output["stats"] = [[{"elapsed":"00:00:06","fail":0,"label":"Critical Tests","pass":3},{"elapsed":"00:00:06","fail":0,"label":"All Tests","pass":3}],[],[{"elapsed":"00:00:06","fail":0,"id":"s1","label":"PersonCreation","name":"PersonCreation","pass":3}]];
+window.output["stats"] = [[{"elapsed":"00:00:08","fail":0,"label":"Critical Tests","pass":1},{"elapsed":"00:00:08","fail":0,"label":"All Tests","pass":1}],[],[{"elapsed":"00:00:08","fail":0,"id":"s1","label":"PersonCreationRulesOnNameAndTitle","name":"PersonCreationRulesOnNameAndTitle","pass":1}]];
 </script>
 <script type="text/javascript">
-window.output["generatedMillis"] = 5384;
+window.output["generatedMillis"] = 8236;
 </script>
 <script type="text/javascript">
-window.output["baseMillis"] = 1405066473616;
+window.output["baseMillis"] = 1411649343764;
 </script>
 <script type="text/javascript">
 window.settings = {"defaultLevel":"INFO","minLevel":"INFO","reportURL":"report.html","splitLogBase":"log","title":""};
@@ -1553,8 +1662,8 @@ window.settings = {"defaultLevel":"INFO","minLevel":"INFO","reportURL":"report.h
 $(document).ready(function() {
     try {
         var topsuite = window.testdata.suite();
-    } catch (e) {
-        addJavaScriptDisabledWarning();
+    } catch (error) {
+        addJavaScriptDisabledWarning(error);
         return;
     }
     initLayout(topsuite.name, 'Log');
@@ -1601,6 +1710,7 @@ function scrollToHash() {
     if (window.location.hash)
         setTimeout(function () {
             var id = window.location.hash.substring(1);
+            window.location.hash = '#';
             window.location.hash = id;
             highlight($('#' + id));
         }, 0);
@@ -1661,7 +1771,7 @@ function addTestExecutionLog(main) {
       </div>
       <div class="tag-links">
         {{each links}}
-        <span>[<a href="${$value.url}" title="${$value.url}">{{html $value.title}}</a>]</span>
+        <span>[<a href="{{html $value.url}}" title="{{html $value.url}}">{{html $value.title}}</a>]</span>
         {{/each}}
       </div>
     </td>
@@ -1686,7 +1796,7 @@ function addTestExecutionLog(main) {
 </script>
 
 <script type="text/x-jquery-tmpl" id="errorTemplate">
-  <tr>
+  <tr id="${id}" class="message-row">
     <td class="error-time">
       {{if link}}
       <a onclick="makeElementVisible('${link}')" href="#${link}" title="Link to details">${date} ${time}</a>
@@ -1696,16 +1806,21 @@ function addTestExecutionLog(main) {
     </td>
     <td class="${level.toLowerCase()} level">${level}</td>
     <td class="message">{{html text}}</td>
+    <td class="select-text" onclick="javascript:selectMessage('${id}')"
+        title="Select message text"></td>
   </tr>
 </script>
 
 <script type="text/x-jquery-tmpl" id="suiteTemplate">
   <div id="${id}" class="suite">
-    <div class="element-header closed" onclick="toggleSuite('${id}')" title="${fullName}">
-      <a class="expand" href="javascript:expandAllChildren('${id}')"
-         onclick="stopPropagation(event)">Expand All</a>
+    <div class="element-header closed" onclick="toggleSuite('${id}')" title="{{html fullName}}">
       <span class="${status.toLowerCase()}">TEST SUITE: </span>
       <span class="name">{{html name}}</span>
+      <a class="expand" title="Expand this suite fully"
+         href="javascript:expandAllChildren('${id}')"
+         onclick="stopPropagation(event)">Expand All</a>
+      <a class="ext-link" title="Link to this suite" href="#${id}"
+         onclick="makeElementVisible('${id}'); stopPropagation(event)">&para;</a>
     </div>
     <div class="children">
       <table class="metadata">
@@ -1756,12 +1871,15 @@ function addTestExecutionLog(main) {
 
 <script type="text/x-jquery-tmpl" id="testTemplate">
   <div id="${id}" class="test">
-    <div class="element-header closed" onclick="toggleTest('${id}')" title="${fullName}">
-      <a class="expand" href="javascript:expandAllChildren('${id}')"
-         onclick="stopPropagation(event)">Expand All</a>
+    <div class="element-header closed" onclick="toggleTest('${id}')" title="{{html fullName}}">
       <span class="${status.toLowerCase()}">TEST CASE: </span>
       <span class="name">{{html name}}</span>
       {{if !isCritical}}(non-critical){{/if}}
+      <a class="expand" title="Expand this test fully"
+         href="javascript:expandAllChildren('${id}')"
+         onclick="stopPropagation(event)">Expand All</a>
+      <a class="ext-link" title="Link to this test" href="#${id}"
+         onclick="makeElementVisible('${id}'); stopPropagation(event)">&para;</a>
     </div>
     <div class="children">
       <table class="metadata">
@@ -1809,11 +1927,14 @@ function addTestExecutionLog(main) {
 <script type="text/x-jquery-tmpl" id="keywordTemplate">
   <div id="${id}" class="keyword">
     <div class="element-header closed" onclick="toggleKeyword('${id}')" title="${name}">
-      <a class="expand" href="javascript:expandAllChildren('${id}')"
-         onclick="stopPropagation(event)">Expand All</a>
       <span class="${status.toLowerCase()}">${type}: </span>
       <span class="name">{{html name}}</span>
       <span class="arg">{{html arguments}}</span>
+      <a class="expand" title="Expand this keyword fully"
+         href="javascript:expandAllChildren('${id}')"
+         onclick="stopPropagation(event)">Expand All</a>
+      <a class="ext-link" title="Link to this keyword" href="#${id}"
+         onclick="makeElementVisible('${id}'); stopPropagation(event)">&para;</a>
     </div>
     <div class="children">
       <table class="metadata keyword-metadata">
@@ -1839,11 +1960,13 @@ function addTestExecutionLog(main) {
 </script>
 
 <script type="text/x-jquery-tmpl" id="messageTemplate">
-  <table class="messages ${level.toLowerCase()}-message">
-    <tr>
+  <table id="${id}" class="messages ${level.toLowerCase()}-message">
+    <tr class="message-row">
       <td class="time">${time}</td>
       <td class="${level.toLowerCase()} level">${level}</td>
       <td class="message">{{html text}}</td>
+      <td class="select-text" onclick="javascript:selectMessage('${id}')"
+          title="Select message text"></td>
     </tr>
   </table>
 </script>

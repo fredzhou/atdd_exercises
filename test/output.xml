@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20140711 16:14:33.615" generator="Robot 2.8.1 (Python 2.7.5 on darwin)">
-<suite source="/Users/Yi/Workspace/directory-server/test/PersonCreation.txt" id="s1" name="PersonCreation">
-<test id="s1-t1" name="SuccessfullyCreateAPerson">
+<robot generated="20140925 20:49:03.764" generator="Robot 2.8.5 (Python 2.7.3 on linux2)">
+<suite source="/home/atdd/workspace/atdd_exercises/test/PersonCreationRulesOnNameAndTitle.txt" id="s1" name="PersonCreationRulesOnNameAndTitle">
+<test id="s1-t1" name="Check rules on Name and Title">
 <kw type="setup" name="BuiltIn.Run Keywords">
 <doc>Executes all the given keywords in a sequence.</doc>
 <arguments>
@@ -15,10 +15,10 @@
 <arguments>
 <arg>${SERVER}</arg>
 </arguments>
-<msg timestamp="20140711 16:14:33.732" level="INFO">Opening browser 'firefox' to base url 'http://localhost:4567'</msg>
-<status status="PASS" endtime="20140711 16:14:35.440" starttime="20140711 16:14:33.731"></status>
+<msg timestamp="20140925 20:49:03.936" level="INFO">Opening browser 'firefox' to base url 'http://localhost:4567'</msg>
+<status status="PASS" endtime="20140925 20:49:08.159" starttime="20140925 20:49:03.936"></status>
 </kw>
-<kw type="kw" name="DeletePeople">
+<kw type="kw" name="PersonResource.DeletePeople">
 <doc></doc>
 <arguments>
 </arguments>
@@ -27,34 +27,41 @@
 <arguments>
 <arg>${SERVER}/people</arg>
 </arguments>
-<msg timestamp="20140711 16:14:35.441" level="INFO">Opening url 'http://localhost:4567/people'</msg>
-<status status="PASS" endtime="20140711 16:14:35.462" starttime="20140711 16:14:35.441"></status>
+<msg timestamp="20140925 20:49:08.190" level="INFO">Opening url 'http://localhost:4567/people'</msg>
+<status status="PASS" endtime="20140925 20:49:08.431" starttime="20140925 20:49:08.190"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Submit Form">
 <doc>Submits a form identified by `locator`.</doc>
 <arguments>
 <arg>destroy</arg>
 </arguments>
-<msg timestamp="20140711 16:14:35.463" level="INFO">Submitting form 'destroy'.</msg>
-<status status="PASS" endtime="20140711 16:14:35.517" starttime="20140711 16:14:35.462"></status>
+<msg timestamp="20140925 20:49:08.431" level="INFO">Submitting form 'destroy'.</msg>
+<status status="PASS" endtime="20140925 20:49:08.597" starttime="20140925 20:49:08.431"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:35.518" starttime="20140711 16:14:35.440"></status>
+<status status="PASS" endtime="20140925 20:49:08.597" starttime="20140925 20:49:08.178"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:35.518" starttime="20140711 16:14:33.731"></status>
+<status status="PASS" endtime="20140925 20:49:08.597" starttime="20140925 20:49:03.936"></status>
 </kw>
-<kw type="kw" name="CreatePerson">
+<kw type="kw" name="PersonResource.ApplyRulesOnCreatingPerson">
 <doc></doc>
 <arguments>
 <arg>Lv Yi</arg>
 <arg>Coach</arg>
+<arg>SUCCESS</arg>
+</arguments>
+<kw type="kw" name="PersonResource.CreatePerson">
+<doc></doc>
+<arguments>
+<arg>${name}</arg>
+<arg>${title}</arg>
 </arguments>
 <kw type="kw" name="Selenium2Library.Go To">
 <doc>Navigates the active browser instance to the provided URL.</doc>
 <arguments>
 <arg>${SERVER}/create</arg>
 </arguments>
-<msg timestamp="20140711 16:14:35.519" level="INFO">Opening url 'http://localhost:4567/create'</msg>
-<status status="PASS" endtime="20140711 16:14:35.534" starttime="20140711 16:14:35.518"></status>
+<msg timestamp="20140925 20:49:08.599" level="INFO">Opening url 'http://localhost:4567/create'</msg>
+<status status="PASS" endtime="20140925 20:49:08.747" starttime="20140925 20:49:08.599"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Input Text">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -62,8 +69,8 @@
 <arg>name</arg>
 <arg>${name}</arg>
 </arguments>
-<msg timestamp="20140711 16:14:35.534" level="INFO">Typing text 'Lv Yi' into text field 'name'</msg>
-<status status="PASS" endtime="20140711 16:14:35.575" starttime="20140711 16:14:35.534"></status>
+<msg timestamp="20140925 20:49:08.748" level="INFO">Typing text 'Lv Yi' into text field 'name'</msg>
+<status status="PASS" endtime="20140925 20:49:08.894" starttime="20140925 20:49:08.747"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Input Text">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -71,161 +78,95 @@
 <arg>title</arg>
 <arg>${title}</arg>
 </arguments>
-<msg timestamp="20140711 16:14:35.575" level="INFO">Typing text 'Coach' into text field 'title'</msg>
-<status status="PASS" endtime="20140711 16:14:35.613" starttime="20140711 16:14:35.575"></status>
+<msg timestamp="20140925 20:49:08.894" level="INFO">Typing text 'Coach' into text field 'title'</msg>
+<status status="PASS" endtime="20140925 20:49:08.926" starttime="20140925 20:49:08.894"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Submit Form">
 <doc>Submits a form identified by `locator`.</doc>
 <arguments>
 </arguments>
-<msg timestamp="20140711 16:14:35.613" level="INFO">Submitting form 'None'.</msg>
-<status status="PASS" endtime="20140711 16:14:35.648" starttime="20140711 16:14:35.613"></status>
+<msg timestamp="20140925 20:49:08.927" level="INFO">Submitting form 'None'.</msg>
+<status status="PASS" endtime="20140925 20:49:09.552" starttime="20140925 20:49:08.926"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:35.648" starttime="20140711 16:14:35.518"></status>
+<status status="PASS" endtime="20140925 20:49:09.552" starttime="20140925 20:49:08.598"></status>
 </kw>
-<kw type="kw" name="VerifyOutput">
+<kw type="kw" name="PersonResource.CheckExpectation">
 <doc></doc>
 <arguments>
-<arg>Lv Yi, Coach has been created!</arg>
+<arg>${exp}</arg>
+</arguments>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${exp}' == 'SUCCESS'</arg>
+<arg>Page Should Contain</arg>
+<arg>created</arg>
 </arguments>
 <kw type="kw" name="Selenium2Library.Page Should Contain">
 <doc>Verifies that current page contains `text`.</doc>
 <arguments>
-<arg>${output}</arg>
+<arg>created</arg>
 </arguments>
-<msg timestamp="20140711 16:14:35.658" level="INFO">Current page contains text 'Lv Yi, Coach has been created!'.</msg>
-<status status="PASS" endtime="20140711 16:14:35.658" starttime="20140711 16:14:35.648"></status>
+<msg timestamp="20140925 20:49:09.574" level="INFO">Current page contains text 'created'.</msg>
+<status status="PASS" endtime="20140925 20:49:09.574" starttime="20140925 20:49:09.553"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:35.658" starttime="20140711 16:14:35.648"></status>
+<status status="PASS" endtime="20140925 20:49:09.574" starttime="20140925 20:49:09.553"></status>
 </kw>
-<kw type="kw" name="VerifyPerson">
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${exp}' == 'FAILURE'</arg>
+<arg>Page Should not Contain</arg>
+<arg>created</arg>
+</arguments>
+<status status="PASS" endtime="20140925 20:49:09.575" starttime="20140925 20:49:09.574"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:09.575" starttime="20140925 20:49:09.552"></status>
+</kw>
+<kw type="kw" name="PersonResource.DeletePeople">
 <doc></doc>
 <arguments>
-<arg>Lv Yi</arg>
-<arg>Coach</arg>
 </arguments>
 <kw type="kw" name="Selenium2Library.Go To">
 <doc>Navigates the active browser instance to the provided URL.</doc>
 <arguments>
 <arg>${SERVER}/people</arg>
 </arguments>
-<msg timestamp="20140711 16:14:35.660" level="INFO">Opening url 'http://localhost:4567/people'</msg>
-<status status="PASS" endtime="20140711 16:14:35.677" starttime="20140711 16:14:35.659"></status>
+<msg timestamp="20140925 20:49:09.575" level="INFO">Opening url 'http://localhost:4567/people'</msg>
+<status status="PASS" endtime="20140925 20:49:09.603" starttime="20140925 20:49:09.575"></status>
 </kw>
-<kw type="kw" name="Selenium2Library.Page Should Contain">
-<doc>Verifies that current page contains `text`.</doc>
+<kw type="kw" name="Selenium2Library.Submit Form">
+<doc>Submits a form identified by `locator`.</doc>
+<arguments>
+<arg>destroy</arg>
+</arguments>
+<msg timestamp="20140925 20:49:09.603" level="INFO">Submitting form 'destroy'.</msg>
+<status status="PASS" endtime="20140925 20:49:09.717" starttime="20140925 20:49:09.603"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:09.717" starttime="20140925 20:49:09.575"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:09.717" starttime="20140925 20:49:08.598"></status>
+</kw>
+<kw type="kw" name="PersonResource.ApplyRulesOnCreatingPerson">
+<doc></doc>
+<arguments>
+<arg>20 Lv Yi</arg>
+<arg>Coach</arg>
+<arg>FAILURE</arg>
+</arguments>
+<kw type="kw" name="PersonResource.CreatePerson">
+<doc></doc>
 <arguments>
 <arg>${name}</arg>
-</arguments>
-<msg timestamp="20140711 16:14:35.689" level="INFO">Current page contains text 'Lv Yi'.</msg>
-<status status="PASS" endtime="20140711 16:14:35.689" starttime="20140711 16:14:35.678"></status>
-</kw>
-<kw type="kw" name="Selenium2Library.Page Should Contain">
-<doc>Verifies that current page contains `text`.</doc>
-<arguments>
 <arg>${title}</arg>
-</arguments>
-<msg timestamp="20140711 16:14:35.698" level="INFO">Current page contains text 'Coach'.</msg>
-<status status="PASS" endtime="20140711 16:14:35.698" starttime="20140711 16:14:35.690"></status>
-</kw>
-<status status="PASS" endtime="20140711 16:14:35.698" starttime="20140711 16:14:35.659"></status>
-</kw>
-<kw type="teardown" name="BuiltIn.Run Keywords">
-<doc>Executes all the given keywords in a sequence.</doc>
-<arguments>
-<arg>DeletePeople</arg>
-<arg>AND</arg>
-<arg>Close Browser</arg>
-</arguments>
-<kw type="kw" name="DeletePeople">
-<doc></doc>
-<arguments>
-</arguments>
-<kw type="kw" name="Selenium2Library.Go To">
-<doc>Navigates the active browser instance to the provided URL.</doc>
-<arguments>
-<arg>${SERVER}/people</arg>
-</arguments>
-<msg timestamp="20140711 16:14:35.699" level="INFO">Opening url 'http://localhost:4567/people'</msg>
-<status status="PASS" endtime="20140711 16:14:35.718" starttime="20140711 16:14:35.699"></status>
-</kw>
-<kw type="kw" name="Selenium2Library.Submit Form">
-<doc>Submits a form identified by `locator`.</doc>
-<arguments>
-<arg>destroy</arg>
-</arguments>
-<msg timestamp="20140711 16:14:35.718" level="INFO">Submitting form 'destroy'.</msg>
-<status status="PASS" endtime="20140711 16:14:35.743" starttime="20140711 16:14:35.718"></status>
-</kw>
-<status status="PASS" endtime="20140711 16:14:35.743" starttime="20140711 16:14:35.699"></status>
-</kw>
-<kw type="kw" name="Selenium2Library.Close Browser">
-<doc>Closes the current browser.</doc>
-<arguments>
-</arguments>
-<status status="PASS" endtime="20140711 16:14:35.771" starttime="20140711 16:14:35.743"></status>
-</kw>
-<status status="PASS" endtime="20140711 16:14:35.772" starttime="20140711 16:14:35.698"></status>
-</kw>
-<doc></doc>
-<tags>
-</tags>
-<status status="PASS" endtime="20140711 16:14:35.772" critical="yes" starttime="20140711 16:14:33.731"></status>
-</test>
-<test id="s1-t2" name="SuccessfullyCreateMultiplePersons">
-<kw type="setup" name="BuiltIn.Run Keywords">
-<doc>Executes all the given keywords in a sequence.</doc>
-<arguments>
-<arg>Open Browser</arg>
-<arg>${SERVER}</arg>
-<arg>AND</arg>
-<arg>DeletePeople</arg>
-</arguments>
-<kw type="kw" name="Selenium2Library.Open Browser">
-<doc>Opens a new browser instance to given URL.</doc>
-<arguments>
-<arg>${SERVER}</arg>
-</arguments>
-<msg timestamp="20140711 16:14:35.773" level="INFO">Opening browser 'firefox' to base url 'http://localhost:4567'</msg>
-<status status="PASS" endtime="20140711 16:14:37.261" starttime="20140711 16:14:35.773"></status>
-</kw>
-<kw type="kw" name="DeletePeople">
-<doc></doc>
-<arguments>
-</arguments>
-<kw type="kw" name="Selenium2Library.Go To">
-<doc>Navigates the active browser instance to the provided URL.</doc>
-<arguments>
-<arg>${SERVER}/people</arg>
-</arguments>
-<msg timestamp="20140711 16:14:37.262" level="INFO">Opening url 'http://localhost:4567/people'</msg>
-<status status="PASS" endtime="20140711 16:14:37.281" starttime="20140711 16:14:37.261"></status>
-</kw>
-<kw type="kw" name="Selenium2Library.Submit Form">
-<doc>Submits a form identified by `locator`.</doc>
-<arguments>
-<arg>destroy</arg>
-</arguments>
-<msg timestamp="20140711 16:14:37.282" level="INFO">Submitting form 'destroy'.</msg>
-<status status="PASS" endtime="20140711 16:14:37.331" starttime="20140711 16:14:37.281"></status>
-</kw>
-<status status="PASS" endtime="20140711 16:14:37.332" starttime="20140711 16:14:37.261"></status>
-</kw>
-<status status="PASS" endtime="20140711 16:14:37.332" starttime="20140711 16:14:35.773"></status>
-</kw>
-<kw type="kw" name="CreatePerson">
-<doc></doc>
-<arguments>
-<arg>Lv Yi</arg>
-<arg>Coach</arg>
 </arguments>
 <kw type="kw" name="Selenium2Library.Go To">
 <doc>Navigates the active browser instance to the provided URL.</doc>
 <arguments>
 <arg>${SERVER}/create</arg>
 </arguments>
-<msg timestamp="20140711 16:14:37.333" level="INFO">Opening url 'http://localhost:4567/create'</msg>
-<status status="PASS" endtime="20140711 16:14:37.348" starttime="20140711 16:14:37.332"></status>
+<msg timestamp="20140925 20:49:09.718" level="INFO">Opening url 'http://localhost:4567/create'</msg>
+<status status="PASS" endtime="20140925 20:49:09.786" starttime="20140925 20:49:09.718"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Input Text">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -233,8 +174,8 @@
 <arg>name</arg>
 <arg>${name}</arg>
 </arguments>
-<msg timestamp="20140711 16:14:37.349" level="INFO">Typing text 'Lv Yi' into text field 'name'</msg>
-<status status="PASS" endtime="20140711 16:14:37.388" starttime="20140711 16:14:37.349"></status>
+<msg timestamp="20140925 20:49:09.786" level="INFO">Typing text '20 Lv Yi' into text field 'name'</msg>
+<status status="PASS" endtime="20140925 20:49:09.827" starttime="20140925 20:49:09.786"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Input Text">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -242,31 +183,95 @@
 <arg>title</arg>
 <arg>${title}</arg>
 </arguments>
-<msg timestamp="20140711 16:14:37.389" level="INFO">Typing text 'Coach' into text field 'title'</msg>
-<status status="PASS" endtime="20140711 16:14:37.423" starttime="20140711 16:14:37.389"></status>
+<msg timestamp="20140925 20:49:09.827" level="INFO">Typing text 'Coach' into text field 'title'</msg>
+<status status="PASS" endtime="20140925 20:49:09.863" starttime="20140925 20:49:09.827"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Submit Form">
 <doc>Submits a form identified by `locator`.</doc>
 <arguments>
 </arguments>
-<msg timestamp="20140711 16:14:37.423" level="INFO">Submitting form 'None'.</msg>
-<status status="PASS" endtime="20140711 16:14:37.454" starttime="20140711 16:14:37.423"></status>
+<msg timestamp="20140925 20:49:09.864" level="INFO">Submitting form 'None'.</msg>
+<status status="PASS" endtime="20140925 20:49:09.895" starttime="20140925 20:49:09.864"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:37.454" starttime="20140711 16:14:37.332"></status>
+<status status="PASS" endtime="20140925 20:49:09.895" starttime="20140925 20:49:09.718"></status>
 </kw>
-<kw type="kw" name="CreatePerson">
+<kw type="kw" name="PersonResource.CheckExpectation">
 <doc></doc>
 <arguments>
-<arg>Lv Lechun</arg>
-<arg>Daughter</arg>
+<arg>${exp}</arg>
+</arguments>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${exp}' == 'SUCCESS'</arg>
+<arg>Page Should Contain</arg>
+<arg>created</arg>
+</arguments>
+<status status="PASS" endtime="20140925 20:49:09.896" starttime="20140925 20:49:09.896"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${exp}' == 'FAILURE'</arg>
+<arg>Page Should not Contain</arg>
+<arg>created</arg>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Not Contain">
+<doc>Verifies the current page does not contain `text`.</doc>
+<arguments>
+<arg>created</arg>
+</arguments>
+<msg timestamp="20140925 20:49:09.918" level="INFO">Current page does not contain text 'created'.</msg>
+<status status="PASS" endtime="20140925 20:49:09.918" starttime="20140925 20:49:09.897"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:09.918" starttime="20140925 20:49:09.897"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:09.918" starttime="20140925 20:49:09.896"></status>
+</kw>
+<kw type="kw" name="PersonResource.DeletePeople">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${SERVER}/people</arg>
+</arguments>
+<msg timestamp="20140925 20:49:09.919" level="INFO">Opening url 'http://localhost:4567/people'</msg>
+<status status="PASS" endtime="20140925 20:49:09.959" starttime="20140925 20:49:09.919"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Submit Form">
+<doc>Submits a form identified by `locator`.</doc>
+<arguments>
+<arg>destroy</arg>
+</arguments>
+<msg timestamp="20140925 20:49:09.960" level="INFO">Submitting form 'destroy'.</msg>
+<status status="PASS" endtime="20140925 20:49:10.032" starttime="20140925 20:49:09.959"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:10.033" starttime="20140925 20:49:09.918"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:10.033" starttime="20140925 20:49:09.717"></status>
+</kw>
+<kw type="kw" name="PersonResource.ApplyRulesOnCreatingPerson">
+<doc></doc>
+<arguments>
+<arg>Lv Yi 88888888888888</arg>
+<arg>Coach</arg>
+<arg>SUCCESS</arg>
+</arguments>
+<kw type="kw" name="PersonResource.CreatePerson">
+<doc></doc>
+<arguments>
+<arg>${name}</arg>
+<arg>${title}</arg>
 </arguments>
 <kw type="kw" name="Selenium2Library.Go To">
 <doc>Navigates the active browser instance to the provided URL.</doc>
 <arguments>
 <arg>${SERVER}/create</arg>
 </arguments>
-<msg timestamp="20140711 16:14:37.455" level="INFO">Opening url 'http://localhost:4567/create'</msg>
-<status status="PASS" endtime="20140711 16:14:37.471" starttime="20140711 16:14:37.455"></status>
+<msg timestamp="20140925 20:49:10.035" level="INFO">Opening url 'http://localhost:4567/create'</msg>
+<status status="PASS" endtime="20140925 20:49:10.100" starttime="20140925 20:49:10.034"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Input Text">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -274,8 +279,8 @@
 <arg>name</arg>
 <arg>${name}</arg>
 </arguments>
-<msg timestamp="20140711 16:14:37.472" level="INFO">Typing text 'Lv Lechun' into text field 'name'</msg>
-<status status="PASS" endtime="20140711 16:14:37.505" starttime="20140711 16:14:37.472"></status>
+<msg timestamp="20140925 20:49:10.100" level="INFO">Typing text 'Lv Yi 88888888888888' into text field 'name'</msg>
+<status status="PASS" endtime="20140925 20:49:10.149" starttime="20140925 20:49:10.100"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Input Text">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -283,105 +288,52 @@
 <arg>title</arg>
 <arg>${title}</arg>
 </arguments>
-<msg timestamp="20140711 16:14:37.506" level="INFO">Typing text 'Daughter' into text field 'title'</msg>
-<status status="PASS" endtime="20140711 16:14:37.538" starttime="20140711 16:14:37.506"></status>
+<msg timestamp="20140925 20:49:10.150" level="INFO">Typing text 'Coach' into text field 'title'</msg>
+<status status="PASS" endtime="20140925 20:49:10.186" starttime="20140925 20:49:10.150"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Submit Form">
 <doc>Submits a form identified by `locator`.</doc>
 <arguments>
 </arguments>
-<msg timestamp="20140711 16:14:37.538" level="INFO">Submitting form 'None'.</msg>
-<status status="PASS" endtime="20140711 16:14:37.565" starttime="20140711 16:14:37.538"></status>
+<msg timestamp="20140925 20:49:10.187" level="INFO">Submitting form 'None'.</msg>
+<status status="PASS" endtime="20140925 20:49:10.229" starttime="20140925 20:49:10.187"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:37.565" starttime="20140711 16:14:37.454"></status>
+<status status="PASS" endtime="20140925 20:49:10.229" starttime="20140925 20:49:10.034"></status>
 </kw>
-<kw type="kw" name="VerifyOutput">
+<kw type="kw" name="PersonResource.CheckExpectation">
 <doc></doc>
 <arguments>
-<arg>Lv Lechun, Daughter has been created!</arg>
+<arg>${exp}</arg>
+</arguments>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${exp}' == 'SUCCESS'</arg>
+<arg>Page Should Contain</arg>
+<arg>created</arg>
 </arguments>
 <kw type="kw" name="Selenium2Library.Page Should Contain">
 <doc>Verifies that current page contains `text`.</doc>
 <arguments>
-<arg>${output}</arg>
+<arg>created</arg>
 </arguments>
-<msg timestamp="20140711 16:14:37.574" level="INFO">Current page contains text 'Lv Lechun, Daughter has been created!'.</msg>
-<status status="PASS" endtime="20140711 16:14:37.574" starttime="20140711 16:14:37.566"></status>
+<msg timestamp="20140925 20:49:10.246" level="INFO">Current page contains text 'created'.</msg>
+<status status="PASS" endtime="20140925 20:49:10.246" starttime="20140925 20:49:10.230"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:37.574" starttime="20140711 16:14:37.565"></status>
+<status status="PASS" endtime="20140925 20:49:10.246" starttime="20140925 20:49:10.230"></status>
 </kw>
-<kw type="kw" name="VerifyPerson">
-<doc></doc>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
 <arguments>
-<arg>Lv Lechun</arg>
-<arg>Daughter</arg>
+<arg>'${exp}' == 'FAILURE'</arg>
+<arg>Page Should not Contain</arg>
+<arg>created</arg>
 </arguments>
-<kw type="kw" name="Selenium2Library.Go To">
-<doc>Navigates the active browser instance to the provided URL.</doc>
-<arguments>
-<arg>${SERVER}/people</arg>
-</arguments>
-<msg timestamp="20140711 16:14:37.575" level="INFO">Opening url 'http://localhost:4567/people'</msg>
-<status status="PASS" endtime="20140711 16:14:37.594" starttime="20140711 16:14:37.575"></status>
+<status status="PASS" endtime="20140925 20:49:10.247" starttime="20140925 20:49:10.246"></status>
 </kw>
-<kw type="kw" name="Selenium2Library.Page Should Contain">
-<doc>Verifies that current page contains `text`.</doc>
-<arguments>
-<arg>${name}</arg>
-</arguments>
-<msg timestamp="20140711 16:14:37.607" level="INFO">Current page contains text 'Lv Lechun'.</msg>
-<status status="PASS" endtime="20140711 16:14:37.607" starttime="20140711 16:14:37.595"></status>
+<status status="PASS" endtime="20140925 20:49:10.247" starttime="20140925 20:49:10.229"></status>
 </kw>
-<kw type="kw" name="Selenium2Library.Page Should Contain">
-<doc>Verifies that current page contains `text`.</doc>
-<arguments>
-<arg>${title}</arg>
-</arguments>
-<msg timestamp="20140711 16:14:37.617" level="INFO">Current page contains text 'Daughter'.</msg>
-<status status="PASS" endtime="20140711 16:14:37.617" starttime="20140711 16:14:37.607"></status>
-</kw>
-<status status="PASS" endtime="20140711 16:14:37.617" starttime="20140711 16:14:37.575"></status>
-</kw>
-<kw type="kw" name="VerifyPerson">
-<doc></doc>
-<arguments>
-<arg>Lv Yi</arg>
-<arg>Coach</arg>
-</arguments>
-<kw type="kw" name="Selenium2Library.Go To">
-<doc>Navigates the active browser instance to the provided URL.</doc>
-<arguments>
-<arg>${SERVER}/people</arg>
-</arguments>
-<msg timestamp="20140711 16:14:37.618" level="INFO">Opening url 'http://localhost:4567/people'</msg>
-<status status="PASS" endtime="20140711 16:14:37.638" starttime="20140711 16:14:37.617"></status>
-</kw>
-<kw type="kw" name="Selenium2Library.Page Should Contain">
-<doc>Verifies that current page contains `text`.</doc>
-<arguments>
-<arg>${name}</arg>
-</arguments>
-<msg timestamp="20140711 16:14:37.647" level="INFO">Current page contains text 'Lv Yi'.</msg>
-<status status="PASS" endtime="20140711 16:14:37.648" starttime="20140711 16:14:37.638"></status>
-</kw>
-<kw type="kw" name="Selenium2Library.Page Should Contain">
-<doc>Verifies that current page contains `text`.</doc>
-<arguments>
-<arg>${title}</arg>
-</arguments>
-<msg timestamp="20140711 16:14:37.656" level="INFO">Current page contains text 'Coach'.</msg>
-<status status="PASS" endtime="20140711 16:14:37.657" starttime="20140711 16:14:37.648"></status>
-</kw>
-<status status="PASS" endtime="20140711 16:14:37.657" starttime="20140711 16:14:37.617"></status>
-</kw>
-<kw type="teardown" name="BuiltIn.Run Keywords">
-<doc>Executes all the given keywords in a sequence.</doc>
-<arguments>
-<arg>DeletePeople</arg>
-<arg>AND</arg>
-<arg>Close Browser</arg>
-</arguments>
-<kw type="kw" name="DeletePeople">
+<kw type="kw" name="PersonResource.DeletePeople">
 <doc></doc>
 <arguments>
 </arguments>
@@ -390,86 +342,41 @@
 <arguments>
 <arg>${SERVER}/people</arg>
 </arguments>
-<msg timestamp="20140711 16:14:37.658" level="INFO">Opening url 'http://localhost:4567/people'</msg>
-<status status="PASS" endtime="20140711 16:14:37.678" starttime="20140711 16:14:37.658"></status>
+<msg timestamp="20140925 20:49:10.247" level="INFO">Opening url 'http://localhost:4567/people'</msg>
+<status status="PASS" endtime="20140925 20:49:10.314" starttime="20140925 20:49:10.247"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Submit Form">
 <doc>Submits a form identified by `locator`.</doc>
 <arguments>
 <arg>destroy</arg>
 </arguments>
-<msg timestamp="20140711 16:14:37.678" level="INFO">Submitting form 'destroy'.</msg>
-<status status="PASS" endtime="20140711 16:14:37.704" starttime="20140711 16:14:37.678"></status>
+<msg timestamp="20140925 20:49:10.315" level="INFO">Submitting form 'destroy'.</msg>
+<status status="PASS" endtime="20140925 20:49:10.406" starttime="20140925 20:49:10.314"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:37.704" starttime="20140711 16:14:37.657"></status>
+<status status="PASS" endtime="20140925 20:49:10.406" starttime="20140925 20:49:10.247"></status>
 </kw>
-<kw type="kw" name="Selenium2Library.Close Browser">
-<doc>Closes the current browser.</doc>
-<arguments>
-</arguments>
-<status status="PASS" endtime="20140711 16:14:37.733" starttime="20140711 16:14:37.704"></status>
+<status status="PASS" endtime="20140925 20:49:10.406" starttime="20140925 20:49:10.033"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:37.733" starttime="20140711 16:14:37.657"></status>
-</kw>
-<doc></doc>
-<tags>
-</tags>
-<status status="PASS" endtime="20140711 16:14:37.733" critical="yes" starttime="20140711 16:14:35.772"></status>
-</test>
-<test id="s1-t3" name="NotCreateSamePerson">
-<kw type="setup" name="BuiltIn.Run Keywords">
-<doc>Executes all the given keywords in a sequence.</doc>
-<arguments>
-<arg>Open Browser</arg>
-<arg>${SERVER}</arg>
-<arg>AND</arg>
-<arg>DeletePeople</arg>
-</arguments>
-<kw type="kw" name="Selenium2Library.Open Browser">
-<doc>Opens a new browser instance to given URL.</doc>
-<arguments>
-<arg>${SERVER}</arg>
-</arguments>
-<msg timestamp="20140711 16:14:37.735" level="INFO">Opening browser 'firefox' to base url 'http://localhost:4567'</msg>
-<status status="PASS" endtime="20140711 16:14:39.228" starttime="20140711 16:14:37.735"></status>
-</kw>
-<kw type="kw" name="DeletePeople">
+<kw type="kw" name="PersonResource.ApplyRulesOnCreatingPerson">
 <doc></doc>
 <arguments>
-</arguments>
-<kw type="kw" name="Selenium2Library.Go To">
-<doc>Navigates the active browser instance to the provided URL.</doc>
-<arguments>
-<arg>${SERVER}/people</arg>
-</arguments>
-<msg timestamp="20140711 16:14:39.229" level="INFO">Opening url 'http://localhost:4567/people'</msg>
-<status status="PASS" endtime="20140711 16:14:39.249" starttime="20140711 16:14:39.228"></status>
-</kw>
-<kw type="kw" name="Selenium2Library.Submit Form">
-<doc>Submits a form identified by `locator`.</doc>
-<arguments>
-<arg>destroy</arg>
-</arguments>
-<msg timestamp="20140711 16:14:39.249" level="INFO">Submitting form 'destroy'.</msg>
-<status status="PASS" endtime="20140711 16:14:39.298" starttime="20140711 16:14:39.249"></status>
-</kw>
-<status status="PASS" endtime="20140711 16:14:39.298" starttime="20140711 16:14:39.228"></status>
-</kw>
-<status status="PASS" endtime="20140711 16:14:39.298" starttime="20140711 16:14:37.734"></status>
-</kw>
-<kw type="kw" name="CreatePerson">
-<doc></doc>
-<arguments>
-<arg>Lv Yi</arg>
+<arg>Lv Yi 888888888888888</arg>
 <arg>Coach</arg>
+<arg>FAILURE</arg>
+</arguments>
+<kw type="kw" name="PersonResource.CreatePerson">
+<doc></doc>
+<arguments>
+<arg>${name}</arg>
+<arg>${title}</arg>
 </arguments>
 <kw type="kw" name="Selenium2Library.Go To">
 <doc>Navigates the active browser instance to the provided URL.</doc>
 <arguments>
 <arg>${SERVER}/create</arg>
 </arguments>
-<msg timestamp="20140711 16:14:39.299" level="INFO">Opening url 'http://localhost:4567/create'</msg>
-<status status="PASS" endtime="20140711 16:14:39.316" starttime="20140711 16:14:39.299"></status>
+<msg timestamp="20140925 20:49:10.408" level="INFO">Opening url 'http://localhost:4567/create'</msg>
+<status status="PASS" endtime="20140925 20:49:10.467" starttime="20140925 20:49:10.408"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Input Text">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -477,8 +384,8 @@
 <arg>name</arg>
 <arg>${name}</arg>
 </arguments>
-<msg timestamp="20140711 16:14:39.316" level="INFO">Typing text 'Lv Yi' into text field 'name'</msg>
-<status status="PASS" endtime="20140711 16:14:39.357" starttime="20140711 16:14:39.316"></status>
+<msg timestamp="20140925 20:49:10.467" level="INFO">Typing text 'Lv Yi 888888888888888' into text field 'name'</msg>
+<status status="PASS" endtime="20140925 20:49:10.517" starttime="20140925 20:49:10.467"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Input Text">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -486,31 +393,200 @@
 <arg>title</arg>
 <arg>${title}</arg>
 </arguments>
-<msg timestamp="20140711 16:14:39.358" level="INFO">Typing text 'Coach' into text field 'title'</msg>
-<status status="PASS" endtime="20140711 16:14:39.389" starttime="20140711 16:14:39.358"></status>
+<msg timestamp="20140925 20:49:10.517" level="INFO">Typing text 'Coach' into text field 'title'</msg>
+<status status="PASS" endtime="20140925 20:49:10.554" starttime="20140925 20:49:10.517"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Submit Form">
 <doc>Submits a form identified by `locator`.</doc>
 <arguments>
 </arguments>
-<msg timestamp="20140711 16:14:39.390" level="INFO">Submitting form 'None'.</msg>
-<status status="PASS" endtime="20140711 16:14:39.422" starttime="20140711 16:14:39.390"></status>
+<msg timestamp="20140925 20:49:10.555" level="INFO">Submitting form 'None'.</msg>
+<status status="PASS" endtime="20140925 20:49:10.591" starttime="20140925 20:49:10.555"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:39.422" starttime="20140711 16:14:39.299"></status>
+<status status="PASS" endtime="20140925 20:49:10.591" starttime="20140925 20:49:10.407"></status>
 </kw>
-<kw type="kw" name="CreatePerson">
+<kw type="kw" name="PersonResource.CheckExpectation">
+<doc></doc>
+<arguments>
+<arg>${exp}</arg>
+</arguments>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${exp}' == 'SUCCESS'</arg>
+<arg>Page Should Contain</arg>
+<arg>created</arg>
+</arguments>
+<status status="PASS" endtime="20140925 20:49:10.592" starttime="20140925 20:49:10.592"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${exp}' == 'FAILURE'</arg>
+<arg>Page Should not Contain</arg>
+<arg>created</arg>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Not Contain">
+<doc>Verifies the current page does not contain `text`.</doc>
+<arguments>
+<arg>created</arg>
+</arguments>
+<msg timestamp="20140925 20:49:10.612" level="INFO">Current page does not contain text 'created'.</msg>
+<status status="PASS" endtime="20140925 20:49:10.612" starttime="20140925 20:49:10.593"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:10.612" starttime="20140925 20:49:10.593"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:10.612" starttime="20140925 20:49:10.591"></status>
+</kw>
+<kw type="kw" name="PersonResource.DeletePeople">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${SERVER}/people</arg>
+</arguments>
+<msg timestamp="20140925 20:49:10.613" level="INFO">Opening url 'http://localhost:4567/people'</msg>
+<status status="PASS" endtime="20140925 20:49:10.643" starttime="20140925 20:49:10.613"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Submit Form">
+<doc>Submits a form identified by `locator`.</doc>
+<arguments>
+<arg>destroy</arg>
+</arguments>
+<msg timestamp="20140925 20:49:10.644" level="INFO">Submitting form 'destroy'.</msg>
+<status status="PASS" endtime="20140925 20:49:10.717" starttime="20140925 20:49:10.643"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:10.717" starttime="20140925 20:49:10.612"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:10.718" starttime="20140925 20:49:10.407"></status>
+</kw>
+<kw type="kw" name="PersonResource.ApplyRulesOnCreatingPerson">
+<doc></doc>
+<arguments>
+<arg>Lv Yi</arg>
+<arg>${EMPTY}</arg>
+<arg>SUCCESS</arg>
+</arguments>
+<kw type="kw" name="PersonResource.CreatePerson">
+<doc></doc>
+<arguments>
+<arg>${name}</arg>
+<arg>${title}</arg>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${SERVER}/create</arg>
+</arguments>
+<msg timestamp="20140925 20:49:10.719" level="INFO">Opening url 'http://localhost:4567/create'</msg>
+<status status="PASS" endtime="20140925 20:49:10.778" starttime="20140925 20:49:10.719"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name</arg>
+<arg>${name}</arg>
+</arguments>
+<msg timestamp="20140925 20:49:10.779" level="INFO">Typing text 'Lv Yi' into text field 'name'</msg>
+<status status="PASS" endtime="20140925 20:49:10.836" starttime="20140925 20:49:10.778"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>title</arg>
+<arg>${title}</arg>
+</arguments>
+<msg timestamp="20140925 20:49:10.836" level="INFO">Typing text '' into text field 'title'</msg>
+<status status="PASS" endtime="20140925 20:49:10.869" starttime="20140925 20:49:10.836"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Submit Form">
+<doc>Submits a form identified by `locator`.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20140925 20:49:10.869" level="INFO">Submitting form 'None'.</msg>
+<status status="PASS" endtime="20140925 20:49:10.936" starttime="20140925 20:49:10.869"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:10.936" starttime="20140925 20:49:10.718"></status>
+</kw>
+<kw type="kw" name="PersonResource.CheckExpectation">
+<doc></doc>
+<arguments>
+<arg>${exp}</arg>
+</arguments>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${exp}' == 'SUCCESS'</arg>
+<arg>Page Should Contain</arg>
+<arg>created</arg>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Contain">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>created</arg>
+</arguments>
+<msg timestamp="20140925 20:49:10.957" level="INFO">Current page contains text 'created'.</msg>
+<status status="PASS" endtime="20140925 20:49:10.957" starttime="20140925 20:49:10.937"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:10.957" starttime="20140925 20:49:10.936"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${exp}' == 'FAILURE'</arg>
+<arg>Page Should not Contain</arg>
+<arg>created</arg>
+</arguments>
+<status status="PASS" endtime="20140925 20:49:10.957" starttime="20140925 20:49:10.957"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:10.957" starttime="20140925 20:49:10.936"></status>
+</kw>
+<kw type="kw" name="PersonResource.DeletePeople">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${SERVER}/people</arg>
+</arguments>
+<msg timestamp="20140925 20:49:10.958" level="INFO">Opening url 'http://localhost:4567/people'</msg>
+<status status="PASS" endtime="20140925 20:49:10.999" starttime="20140925 20:49:10.958"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Submit Form">
+<doc>Submits a form identified by `locator`.</doc>
+<arguments>
+<arg>destroy</arg>
+</arguments>
+<msg timestamp="20140925 20:49:10.999" level="INFO">Submitting form 'destroy'.</msg>
+<status status="PASS" endtime="20140925 20:49:11.080" starttime="20140925 20:49:10.999"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:11.081" starttime="20140925 20:49:10.957"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:11.081" starttime="20140925 20:49:10.718"></status>
+</kw>
+<kw type="kw" name="PersonResource.ApplyRulesOnCreatingPerson">
 <doc></doc>
 <arguments>
 <arg>Lv Yi</arg>
 <arg>Developer</arg>
+<arg>SUCCESS</arg>
+</arguments>
+<kw type="kw" name="PersonResource.CreatePerson">
+<doc></doc>
+<arguments>
+<arg>${name}</arg>
+<arg>${title}</arg>
 </arguments>
 <kw type="kw" name="Selenium2Library.Go To">
 <doc>Navigates the active browser instance to the provided URL.</doc>
 <arguments>
 <arg>${SERVER}/create</arg>
 </arguments>
-<msg timestamp="20140711 16:14:39.423" level="INFO">Opening url 'http://localhost:4567/create'</msg>
-<status status="PASS" endtime="20140711 16:14:39.438" starttime="20140711 16:14:39.423"></status>
+<msg timestamp="20140925 20:49:11.083" level="INFO">Opening url 'http://localhost:4567/create'</msg>
+<status status="PASS" endtime="20140925 20:49:11.177" starttime="20140925 20:49:11.083"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Input Text">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -518,8 +594,8 @@
 <arg>name</arg>
 <arg>${name}</arg>
 </arguments>
-<msg timestamp="20140711 16:14:39.439" level="INFO">Typing text 'Lv Yi' into text field 'name'</msg>
-<status status="PASS" endtime="20140711 16:14:39.475" starttime="20140711 16:14:39.439"></status>
+<msg timestamp="20140925 20:49:11.177" level="INFO">Typing text 'Lv Yi' into text field 'name'</msg>
+<status status="PASS" endtime="20140925 20:49:11.229" starttime="20140925 20:49:11.177"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Input Text">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -527,64 +603,179 @@
 <arg>title</arg>
 <arg>${title}</arg>
 </arguments>
-<msg timestamp="20140711 16:14:39.475" level="INFO">Typing text 'Developer' into text field 'title'</msg>
-<status status="PASS" endtime="20140711 16:14:39.508" starttime="20140711 16:14:39.475"></status>
+<msg timestamp="20140925 20:49:11.230" level="INFO">Typing text 'Developer' into text field 'title'</msg>
+<status status="PASS" endtime="20140925 20:49:11.270" starttime="20140925 20:49:11.229"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Submit Form">
 <doc>Submits a form identified by `locator`.</doc>
 <arguments>
 </arguments>
-<msg timestamp="20140711 16:14:39.508" level="INFO">Submitting form 'None'.</msg>
-<status status="PASS" endtime="20140711 16:14:39.533" starttime="20140711 16:14:39.508"></status>
+<msg timestamp="20140925 20:49:11.271" level="INFO">Submitting form 'None'.</msg>
+<status status="PASS" endtime="20140925 20:49:11.317" starttime="20140925 20:49:11.271"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:39.533" starttime="20140711 16:14:39.423"></status>
+<status status="PASS" endtime="20140925 20:49:11.317" starttime="20140925 20:49:11.082"></status>
 </kw>
-<kw type="kw" name="VerifyOutput">
+<kw type="kw" name="PersonResource.CheckExpectation">
 <doc></doc>
 <arguments>
-<arg>Lv Yi already exists!</arg>
+<arg>${exp}</arg>
+</arguments>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${exp}' == 'SUCCESS'</arg>
+<arg>Page Should Contain</arg>
+<arg>created</arg>
 </arguments>
 <kw type="kw" name="Selenium2Library.Page Should Contain">
 <doc>Verifies that current page contains `text`.</doc>
 <arguments>
-<arg>${output}</arg>
+<arg>created</arg>
 </arguments>
-<msg timestamp="20140711 16:14:39.542" level="INFO">Current page contains text 'Lv Yi already exists!'.</msg>
-<status status="PASS" endtime="20140711 16:14:39.542" starttime="20140711 16:14:39.534"></status>
+<msg timestamp="20140925 20:49:11.333" level="INFO">Current page contains text 'created'.</msg>
+<status status="PASS" endtime="20140925 20:49:11.333" starttime="20140925 20:49:11.318"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:39.543" starttime="20140711 16:14:39.533"></status>
+<status status="PASS" endtime="20140925 20:49:11.333" starttime="20140925 20:49:11.317"></status>
 </kw>
-<kw type="kw" name="VerifyPerson">
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${exp}' == 'FAILURE'</arg>
+<arg>Page Should not Contain</arg>
+<arg>created</arg>
+</arguments>
+<status status="PASS" endtime="20140925 20:49:11.334" starttime="20140925 20:49:11.333"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:11.334" starttime="20140925 20:49:11.317"></status>
+</kw>
+<kw type="kw" name="PersonResource.DeletePeople">
 <doc></doc>
 <arguments>
-<arg>Lv Yi</arg>
-<arg>Coach</arg>
 </arguments>
 <kw type="kw" name="Selenium2Library.Go To">
 <doc>Navigates the active browser instance to the provided URL.</doc>
 <arguments>
 <arg>${SERVER}/people</arg>
 </arguments>
-<msg timestamp="20140711 16:14:39.543" level="INFO">Opening url 'http://localhost:4567/people'</msg>
-<status status="PASS" endtime="20140711 16:14:39.572" starttime="20140711 16:14:39.543"></status>
+<msg timestamp="20140925 20:49:11.334" level="INFO">Opening url 'http://localhost:4567/people'</msg>
+<status status="PASS" endtime="20140925 20:49:11.394" starttime="20140925 20:49:11.334"></status>
 </kw>
-<kw type="kw" name="Selenium2Library.Page Should Contain">
-<doc>Verifies that current page contains `text`.</doc>
+<kw type="kw" name="Selenium2Library.Submit Form">
+<doc>Submits a form identified by `locator`.</doc>
+<arguments>
+<arg>destroy</arg>
+</arguments>
+<msg timestamp="20140925 20:49:11.394" level="INFO">Submitting form 'destroy'.</msg>
+<status status="PASS" endtime="20140925 20:49:11.499" starttime="20140925 20:49:11.394"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:11.499" starttime="20140925 20:49:11.334"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:11.499" starttime="20140925 20:49:11.082"></status>
+</kw>
+<kw type="kw" name="PersonResource.ApplyRulesOnCreatingPerson">
+<doc></doc>
+<arguments>
+<arg>Lv Yi</arg>
+<arg>Engineer</arg>
+<arg>FAILURE</arg>
+</arguments>
+<kw type="kw" name="PersonResource.CreatePerson">
+<doc></doc>
 <arguments>
 <arg>${name}</arg>
-</arguments>
-<msg timestamp="20140711 16:14:39.582" level="INFO">Current page contains text 'Lv Yi'.</msg>
-<status status="PASS" endtime="20140711 16:14:39.582" starttime="20140711 16:14:39.573"></status>
-</kw>
-<kw type="kw" name="Selenium2Library.Page Should Contain">
-<doc>Verifies that current page contains `text`.</doc>
-<arguments>
 <arg>${title}</arg>
 </arguments>
-<msg timestamp="20140711 16:14:39.593" level="INFO">Current page contains text 'Coach'.</msg>
-<status status="PASS" endtime="20140711 16:14:39.593" starttime="20140711 16:14:39.582"></status>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${SERVER}/create</arg>
+</arguments>
+<msg timestamp="20140925 20:49:11.501" level="INFO">Opening url 'http://localhost:4567/create'</msg>
+<status status="PASS" endtime="20140925 20:49:11.558" starttime="20140925 20:49:11.500"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:39.593" starttime="20140711 16:14:39.543"></status>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name</arg>
+<arg>${name}</arg>
+</arguments>
+<msg timestamp="20140925 20:49:11.558" level="INFO">Typing text 'Lv Yi' into text field 'name'</msg>
+<status status="PASS" endtime="20140925 20:49:11.600" starttime="20140925 20:49:11.558"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>title</arg>
+<arg>${title}</arg>
+</arguments>
+<msg timestamp="20140925 20:49:11.601" level="INFO">Typing text 'Engineer' into text field 'title'</msg>
+<status status="PASS" endtime="20140925 20:49:11.641" starttime="20140925 20:49:11.600"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Submit Form">
+<doc>Submits a form identified by `locator`.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20140925 20:49:11.642" level="INFO">Submitting form 'None'.</msg>
+<status status="PASS" endtime="20140925 20:49:11.672" starttime="20140925 20:49:11.642"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:11.673" starttime="20140925 20:49:11.500"></status>
+</kw>
+<kw type="kw" name="PersonResource.CheckExpectation">
+<doc></doc>
+<arguments>
+<arg>${exp}</arg>
+</arguments>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${exp}' == 'SUCCESS'</arg>
+<arg>Page Should Contain</arg>
+<arg>created</arg>
+</arguments>
+<status status="PASS" endtime="20140925 20:49:11.674" starttime="20140925 20:49:11.673"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>'${exp}' == 'FAILURE'</arg>
+<arg>Page Should not Contain</arg>
+<arg>created</arg>
+</arguments>
+<kw type="kw" name="Selenium2Library.Page Should Not Contain">
+<doc>Verifies the current page does not contain `text`.</doc>
+<arguments>
+<arg>created</arg>
+</arguments>
+<msg timestamp="20140925 20:49:11.695" level="INFO">Current page does not contain text 'created'.</msg>
+<status status="PASS" endtime="20140925 20:49:11.695" starttime="20140925 20:49:11.674"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:11.695" starttime="20140925 20:49:11.674"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:11.695" starttime="20140925 20:49:11.673"></status>
+</kw>
+<kw type="kw" name="PersonResource.DeletePeople">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Go To">
+<doc>Navigates the active browser instance to the provided URL.</doc>
+<arguments>
+<arg>${SERVER}/people</arg>
+</arguments>
+<msg timestamp="20140925 20:49:11.697" level="INFO">Opening url 'http://localhost:4567/people'</msg>
+<status status="PASS" endtime="20140925 20:49:11.723" starttime="20140925 20:49:11.696"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Submit Form">
+<doc>Submits a form identified by `locator`.</doc>
+<arguments>
+<arg>destroy</arg>
+</arguments>
+<msg timestamp="20140925 20:49:11.723" level="INFO">Submitting form 'destroy'.</msg>
+<status status="PASS" endtime="20140925 20:49:11.797" starttime="20140925 20:49:11.723"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:11.797" starttime="20140925 20:49:11.695"></status>
+</kw>
+<status status="PASS" endtime="20140925 20:49:11.797" starttime="20140925 20:49:11.500"></status>
 </kw>
 <kw type="teardown" name="BuiltIn.Run Keywords">
 <doc>Executes all the given keywords in a sequence.</doc>
@@ -593,7 +784,7 @@
 <arg>AND</arg>
 <arg>Close Browser</arg>
 </arguments>
-<kw type="kw" name="DeletePeople">
+<kw type="kw" name="PersonResource.DeletePeople">
 <doc></doc>
 <arguments>
 </arguments>
@@ -602,46 +793,50 @@
 <arguments>
 <arg>${SERVER}/people</arg>
 </arguments>
-<msg timestamp="20140711 16:14:39.595" level="INFO">Opening url 'http://localhost:4567/people'</msg>
-<status status="PASS" endtime="20140711 16:14:39.613" starttime="20140711 16:14:39.594"></status>
+<msg timestamp="20140925 20:49:11.799" level="INFO">Opening url 'http://localhost:4567/people'</msg>
+<status status="PASS" endtime="20140925 20:49:11.862" starttime="20140925 20:49:11.798"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Submit Form">
 <doc>Submits a form identified by `locator`.</doc>
 <arguments>
 <arg>destroy</arg>
 </arguments>
-<msg timestamp="20140711 16:14:39.614" level="INFO">Submitting form 'destroy'.</msg>
-<status status="PASS" endtime="20140711 16:14:39.636" starttime="20140711 16:14:39.613"></status>
+<msg timestamp="20140925 20:49:11.862" level="INFO">Submitting form 'destroy'.</msg>
+<status status="PASS" endtime="20140925 20:49:11.934" starttime="20140925 20:49:11.862"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:39.637" starttime="20140711 16:14:39.594"></status>
+<status status="PASS" endtime="20140925 20:49:11.934" starttime="20140925 20:49:11.798"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Close Browser">
 <doc>Closes the current browser.</doc>
 <arguments>
 </arguments>
-<status status="PASS" endtime="20140711 16:14:39.662" starttime="20140711 16:14:39.637"></status>
+<status status="PASS" endtime="20140925 20:49:12.137" starttime="20140925 20:49:11.934"></status>
 </kw>
-<status status="PASS" endtime="20140711 16:14:39.662" starttime="20140711 16:14:39.594"></status>
+<status status="PASS" endtime="20140925 20:49:12.138" starttime="20140925 20:49:11.797"></status>
 </kw>
 <doc></doc>
 <tags>
 </tags>
-<status status="PASS" endtime="20140711 16:14:39.662" critical="yes" starttime="20140711 16:14:37.734"></status>
+<status status="PASS" endtime="20140925 20:49:12.138" critical="yes" starttime="20140925 20:49:03.935"></status>
 </test>
-<doc></doc>
+<doc>Table format of rules on name and title
+rules need to check:
+legal letters for name
+name length
+title should be in pre-defined set</doc>
 <metadata>
 </metadata>
-<status status="PASS" endtime="20140711 16:14:39.663" starttime="20140711 16:14:33.616"></status>
+<status status="PASS" endtime="20140925 20:49:12.139" starttime="20140925 20:49:03.764"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="0" pass="3">Critical Tests</stat>
-<stat fail="0" pass="3">All Tests</stat>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat fail="0" pass="3" id="s1" name="PersonCreation">PersonCreation</stat>
+<stat fail="0" pass="1" id="s1" name="PersonCreationRulesOnNameAndTitle">PersonCreationRulesOnNameAndTitle</stat>
 </suite>
 </statistics>
 <errors>
