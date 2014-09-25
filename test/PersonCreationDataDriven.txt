@@ -27,4 +27,3 @@ CreatePersonTemplate
     CreatePerson    ${name}    ${title}
     CheckExpectation    ${result}
     PersonExists    ${name}
-    
