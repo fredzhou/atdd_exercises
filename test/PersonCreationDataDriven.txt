@@ -1,4 +1,8 @@
 *** Settings ***
+Documentation     create person in a directory server.
+...
+...               same name with existing one is not permited
+
 Test Setup        Run Keywords    Open Browser    ${SERVER}    AND    DeletePeople
 Test Teardown     Run Keywords    DeletePeople    AND    Close Browser
 

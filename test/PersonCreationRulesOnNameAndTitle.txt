@@ -1,4 +1,11 @@
 *** Settings ***
+Documentation     check rules on name and title
+...
+...               considering:
+...                        name - legal letter
+...                        name - length
+...                        title - valid title
+
 Test Setup        Run Keywords    Open Browser    ${SERVER}    AND    DeletePeople
 Test Teardown     Run Keywords    DeletePeople    AND    Close Browser
 Test Template     ApplyRulesOnCreatingPerson
@@ -14,3 +21,4 @@ Check rules on Name and Title
     Lv Yi                    ${EMPTY}     SUCCESS
     Lv Yi                    Developer    SUCCESS
     Lv Yi                    Engineer     FAILURE
+    
